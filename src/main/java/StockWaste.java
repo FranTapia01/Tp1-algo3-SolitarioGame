@@ -4,18 +4,9 @@ public class StockWaste {
     private Pile stock;
     private Pile wastePile;//
 
-    public StockWaste(int cantidadDeBarajas) { //baraja = juego de naipes de 52 cartas (en el spider se usan 2)
-        this.stock = new Pile();
+    public StockWaste(Pile monton) { //baraja = juego de naipes de 52 cartas (en el spider se usan 2)
+        this.stock = monton;
         this.wastePile = new Pile();
-        for (int i = 0; i < cantidadDeBarajas ; i++) {
-            for(Carta.Palo palo: Carta.Palo.values()) {
-                for (int j = 1; j < 14; j++) {
-                    Carta carta = new Carta(j, palo);
-                    stock.push(carta);
-                }
-            }
-        }
-        Collections.shuffle(stock);//mezcla el mazo
     }
 
     public Carta sacarCarta() {

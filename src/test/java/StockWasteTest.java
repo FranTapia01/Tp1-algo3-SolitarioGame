@@ -6,33 +6,46 @@ public class StockWasteTest {
 
     @Test
     public void Test1() {
-        StockWaste stockWaste = new StockWaste(1);
-        while(!stockWaste.estaVacio()) {
-            stockWaste.pasarCarta();
-            stockWaste.sacarCarta();
-        }
+        Pile monton = new Pile();
+        StockWaste stockWaste = new StockWaste(monton);
+
         assertTrue(stockWaste.estaVacio());
     }
 
     @Test
     public void Test2() {
-        StockWaste stockWaste = new StockWaste(1);
-        stockWaste.pasarCarta();
+        var carta1 = new Carta(9, Carta.Palo.DIAMANTE);
+        var carta2 = new Carta(13, Carta.Palo.PICA);
+        var carta3 = new Carta(1, Carta.Palo.TREBOL);
 
+        var monton = new Pile();
+        monton.push(carta1);
+        monton.push(carta2);
+        monton.push(carta3);
+
+        StockWaste stockWaste = new StockWaste(monton);
+        stockWaste.pasarCarta();
         assertEquals(stockWaste.verCartaExpuesta(), stockWaste.sacarCarta());
     }
 
     @Test
     public void Test3() {//chequea que al pasar todas las cartas y rellenar el mazo queden en el mismo orden
-        StockWaste stockWaste = new StockWaste(1);
-        stockWaste.pasarCarta();
-        Carta primerCarta = stockWaste.verCartaExpuesta();
+        var carta1 = new Carta(9, Carta.Palo.DIAMANTE);
+        var carta2 = new Carta(13, Carta.Palo.PICA);
+        var carta3 = new Carta(1, Carta.Palo.TREBOL);
 
-        for (int i = 0; i < 51 ; i++) {//pasa todas las cartas del mazo y luego lo rellena
-            stockWaste.pasarCarta();
-        }
+        var monton = new Pile();
+        monton.push(carta1);
+        monton.push(carta2);
+        monton.push(carta3);
+
+        StockWaste stockWaste = new StockWaste(monton);
+
+        stockWaste.pasarCarta();
+        stockWaste.pasarCarta();
+        stockWaste.pasarCarta();
         stockWaste.pasarCarta();
 
-        assertEquals(primerCarta, stockWaste.verCartaExpuesta());
+        assertEquals(carta3, stockWaste.verCartaExpuesta());
     }
 }
