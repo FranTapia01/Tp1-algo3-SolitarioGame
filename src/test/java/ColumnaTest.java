@@ -14,14 +14,14 @@ public class ColumnaTest {
         var carta4 = new Carta(3, Carta.Palo.TREBOL);
 
         var cartas = new ArrayList<Carta>();
-        var monton = new Monton();
-        monton.add(carta1);
-        monton.add(carta2);
-        monton.add(carta3);
+        var pile = new Pile();
+        pile.add(carta1);
+        pile.add(carta2);
+        pile.add(carta3);
         cartas.add(carta1);
         cartas.add(carta2);
 
-        Columna col = new Columna(monton, carta4);
+        Columna col = new Columna(pile, carta4);
         col.agregarCartas(cartas);
 
         assertEquals(col.getCartasVisibles().size(), 3);
@@ -37,12 +37,12 @@ public class ColumnaTest {
         var carta4 = new Carta(3, Carta.Palo.TREBOL);
 
         var cartas = new ArrayList<Carta>();
-        var monton = new Monton();
-        monton.push(carta1);
-        monton.push(carta2);
+        var pile = new Pile();
+        pile.push(carta1);
+        pile.push(carta2);
         cartas.add(carta4);
 
-        Columna col = new Columna(monton, carta3);
+        Columna col = new Columna(pile, carta3);
         col.agregarCartas(cartas);
         var sobra = new ArrayList<>(col.sacarCartas(2));
 

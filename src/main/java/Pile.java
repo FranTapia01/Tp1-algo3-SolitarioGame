@@ -1,9 +1,9 @@
 import java.util.Stack;
 
-public class Monton extends Stack<Carta> {
+public class Pile extends Stack<Carta> {
     private int cantidadCartas;
 
-    public Monton() {
+    public Pile() {
         this.cantidadCartas = 0;
     }
 

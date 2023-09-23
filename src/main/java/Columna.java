@@ -1,10 +1,10 @@
 import java.util.ArrayList;
 
-public class Columna extends Monton{
-    private Monton cartasNoVisibles;
+public class Columna extends Pile {
+    private Pile cartasNoVisibles;
     private ArrayList<Carta> cartasVisibles = new ArrayList<>();
 
-    public Columna(Monton cartasNoVisibles, Carta cartaVisible) {
+    public Columna(Pile cartasNoVisibles, Carta cartaVisible) {
         this.cartasNoVisibles = cartasNoVisibles;
         this.cartasVisibles.add(cartaVisible);
     }
