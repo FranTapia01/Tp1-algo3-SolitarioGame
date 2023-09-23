@@ -1,12 +1,13 @@
 import java.util.ArrayList;
 
 public class Columna extends Pile {
-    private Pile cartasNoVisibles;
-    private ArrayList<Carta> cartasVisibles = new ArrayList<>();
+    private final Pile cartasNoVisibles;
+    private final ArrayList<Carta> cartasVisibles;
 
-    public Columna(Pile cartasNoVisibles, Carta cartaVisible) {
+    public Columna(Pile cartasNoVisibles) {
         this.cartasNoVisibles = cartasNoVisibles;
-        this.cartasVisibles.add(cartaVisible);
+        this.cartasVisibles = new ArrayList<>();
+        this.cartasVisibles.add(cartasNoVisibles.pop());
     }
 
     public void agregarCartas(ArrayList<Carta> cartas) {
