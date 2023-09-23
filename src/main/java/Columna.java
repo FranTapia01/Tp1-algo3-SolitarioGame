@@ -30,9 +30,13 @@ public class Columna extends Pile {
         return cartasVisibles;
     }
 
-    public void reponerCartasVisibles() {
+    private void reponerCartasVisibles() {
         if(cartasVisibles.isEmpty() && !cartasNoVisibles.isEmpty()) {
             cartasVisibles.add(cartasNoVisibles.pop());
         }
+    }
+
+    public int getCantidadCartasNoVisibles() {
+        return cartasNoVisibles.size();
     }
 }

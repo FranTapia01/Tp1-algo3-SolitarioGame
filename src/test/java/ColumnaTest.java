@@ -50,4 +50,20 @@ public class ColumnaTest {
         assertEquals(col.getCartasVisibles().get(0), carta2);
         assertEquals(sobra.get(0), carta3);
     }
+
+    @Test
+    public void Test3() {
+        var carta1 = new Carta(9, Carta.Palo.DIAMANTE);
+        var carta2 = new Carta(13, Carta.Palo.PICA);
+        var carta3 = new Carta(1, Carta.Palo.TREBOL);
+
+        var pile = new Pile();
+        pile.push(carta1);
+        pile.push(carta2);
+
+        Columna col = new Columna(pile, carta3);
+
+        assertEquals(col.getCantidadCartasNoVisibles(), 2);
+
+    }
 }
