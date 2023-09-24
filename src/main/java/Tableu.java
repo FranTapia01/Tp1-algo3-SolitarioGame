@@ -29,9 +29,16 @@ public class Tableu {
         int posColumna = numColumna - 1;
         Columna columnaSeleccionada = tableuColumnas.get(posColumna);
         ArrayList<Carta> visibles = columnaSeleccionada.getCartasVisibles();
-        if (visibles.isEmpty() || cartas.isEmpty()){
+        if (cartas.isEmpty()){
             columnaSeleccionada.agregarCartas(cartas);
             return true;
+        }
+        if (visibles.isEmpty()) {
+            if (cartas.get(0).getNumero() == 13 ){
+                columnaSeleccionada.agregarCartas(cartas);
+                return true;
+            }
+            return false;
         }
         Carta cartaApoyada = (visibles.get(visibles.size()-1));
         if (cartaValida(cartaApoyada, cartas.get(0))) {
