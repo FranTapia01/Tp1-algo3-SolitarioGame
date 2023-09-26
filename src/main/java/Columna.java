@@ -7,7 +7,7 @@ public class Columna extends Pile {
     public Columna(Pile cartasNoVisibles) {
         this.cartasNoVisibles = cartasNoVisibles;
         this.cartasVisibles = new ArrayList<>();
-        this.cartasVisibles.add(cartasNoVisibles.pop());
+        reponerCartasVisibles();
     }
 
     public void agregarCartas(ArrayList<Carta> cartas) {

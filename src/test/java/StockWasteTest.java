@@ -9,7 +9,8 @@ public class StockWasteTest {
         Pile monton = new Pile();
         StockWaste stockWaste = new StockWaste(monton);
 
-        assertTrue(stockWaste.estaVacio());
+        assertFalse(stockWaste.pasarCarta());
+        assertFalse(stockWaste.hayCartaExpuesta());
     }
 
     @Test
@@ -18,12 +19,12 @@ public class StockWasteTest {
         var carta2 = new Carta(13, Carta.Palo.PICA);
         var carta3 = new Carta(1, Carta.Palo.TREBOL);
 
-        var monton = new Pile();
-        monton.push(carta1);
-        monton.push(carta2);
-        monton.push(carta3);
+        var pile = new Pile();
+        pile.push(carta1);
+        pile.push(carta2);
+        pile.push(carta3);
 
-        StockWaste stockWaste = new StockWaste(monton);
+        StockWaste stockWaste = new StockWaste(pile);
         stockWaste.pasarCarta();
         assertEquals(stockWaste.verCartaExpuesta(), stockWaste.sacarCarta());
     }
@@ -34,12 +35,12 @@ public class StockWasteTest {
         var carta2 = new Carta(13, Carta.Palo.PICA);
         var carta3 = new Carta(1, Carta.Palo.TREBOL);
 
-        var monton = new Pile();
-        monton.push(carta1);
-        monton.push(carta2);
-        monton.push(carta3);
+        var pile = new Pile();
+        pile.push(carta1);
+        pile.push(carta2);
+        pile.push(carta3);
 
-        StockWaste stockWaste = new StockWaste(monton);
+        StockWaste stockWaste = new StockWaste(pile);
 
         stockWaste.pasarCarta();
         stockWaste.pasarCarta();

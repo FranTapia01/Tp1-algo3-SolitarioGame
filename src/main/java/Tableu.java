@@ -13,15 +13,18 @@ public class Tableu {
         }
         return b.getPalo() == Carta.Palo.TREBOL || b.getPalo() == Carta.Palo.PICA;
     }
+
     private boolean cartaValida(Carta cartaApoyada,Carta cartaRecibida){
         int unNumeroMenos = -1;
         if (!paloContrario(cartaApoyada, cartaRecibida)){
             return false;
         }else return cartaApoyada.getNumero() + unNumeroMenos == cartaRecibida.getNumero();
     }
+
     private boolean columnaInvalida(int numColumna) {
         return !(numColumna <= tableuColumnas.size() && numColumna >= 1);
     }
+
     public boolean agregarCartas(int numColumna, ArrayList<Carta> cartas){
         if (columnaInvalida(numColumna)) {
             return false;
@@ -47,6 +50,7 @@ public class Tableu {
         }
         return false;
     }
+
     public ArrayList<Carta> sacarCartas(int numColumna, int cantCartas) {
         if (columnaInvalida(numColumna) || cantCartas <= 0) {
             return new ArrayList<>();

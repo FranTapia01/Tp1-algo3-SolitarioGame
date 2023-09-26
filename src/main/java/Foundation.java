@@ -18,16 +18,14 @@ public class Foundation {
         IntStream.range(0, cantidadPiles).forEach(i -> this.foundationsPiles.add(new Pile()));
     }
 
-    public boolean agregarCarta(Carta cartaRecibida ,int numPile ){
-
+    public boolean agregarCarta(Carta cartaRecibida ,int numFoundation ){
         int vacio = 0;
         int primerNumero = 1;
-        if (numPile > foundationsPiles.size()){
+        if (numFoundation > foundationsPiles.size()){
             return false;
         }
-
-        numPile -= 1; // para corregir el indice en la lista
-        Pile pile = foundationsPiles.get(numPile);
+        numFoundation -= 1; // para corregir el indice en la lista
+        Pile pile = foundationsPiles.get(numFoundation);
         if (pile.getCantidadCartas() == vacio){
             if(cartaRecibida.getNumero() != primerNumero) {
                 return false;
@@ -35,7 +33,6 @@ public class Foundation {
         }else if (!cartaValida(pile.peek(),cartaRecibida)){
             return false;
         }
-
         pile.push(cartaRecibida);
         return true;
     }
