@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 
-public class Columna extends Pile {
+public class Columna {
     private final Pile cartasNoVisibles;
     private final ArrayList<Carta> cartasVisibles;
 
