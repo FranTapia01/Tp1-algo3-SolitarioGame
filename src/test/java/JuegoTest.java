@@ -33,7 +33,7 @@ public class JuegoTest {
     }
 
     @Test
-    public void Test4() {
+    public void Test4() {//serie de movimientos con la seed fija pra comprobar que se hace lo que deberia.
         Juego juego = new Juego(Juego.EstadoDeInicializacion.PREDECIBLE);
         for (int i = 0; i < 5; i++) juego.pasarCarta();
         juego.stockWasteToTableu(7);
