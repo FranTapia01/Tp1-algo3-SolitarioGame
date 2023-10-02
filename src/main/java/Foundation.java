@@ -5,7 +5,6 @@ public class Foundation {
     private final ArrayList<Pile> foundationsPiles; // 4 piles
 
     private boolean cartaValida(Carta cartaApoyada,Carta cartaRecibida){
-
         int unNumeroExtra = 1;
         if (cartaApoyada.getPalo() != cartaRecibida.getPalo()){
             return false;
@@ -42,7 +41,6 @@ public class Foundation {
         if (numPile > foundationsPiles.size()){
             throw new RuntimeException("Numero de FoundationPile no existente");
         }
-
         numPile -= 1; // para corregir el indice en la lista
         Pile pile = foundationsPiles.get(numPile);
         if (pile.getCantidadCartas() == vacio){
