@@ -37,5 +37,4 @@ public class Tableu {
         Columna columnaSeleccionada = tableuColumnas.get(posColumna);
         return columnaSeleccionada.obtenerCartas(cantCartas);
     }
-
 }

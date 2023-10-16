@@ -11,7 +11,7 @@ public class StockWaste {
 
     public Carta sacarCarta() {
         if(wastePile.isEmpty()) {
-            throw new RuntimeException("wastePile vacia");
+            throw new RuntimeException("No hay carta en la WastePile");
         }
         return wastePile.pop();
     }
