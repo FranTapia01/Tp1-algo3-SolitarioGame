@@ -84,21 +84,17 @@ public class Juego {
 
     //En caso de Tableu.sacarCarta inválido no tira excepción, devuelve array vacío
     public boolean tableuToTableu(int numColumnaOrigen, int numColumnaDestino, int cantCartas) {
-        ArrayList<Carta> cartas = this.tableu.sacarCartas(numColumnaOrigen, cantCartas);
-        if (!(this.tableu.agregarCartas(numColumnaDestino, cartas))) {
-            this.tableu.agregarCartas(numColumnaOrigen, cartas);
-            return false;
-        }
+        ArrayList<Carta> cartas = this.tableu.obtenerCartasExpuestas(numColumnaOrigen, cantCartas);
+        if (!(this.tableu.agregarCartas(numColumnaDestino, cartas))) {return false;}
+        this.tableu.sacarCartas(numColumnaOrigen, cantCartas);
         return true;
     }
 
     //Para Foundation hay excepciones que trabajan sobre casos inválidos
     public boolean tableuToFoundation(int numColumna, int numFoundation) {
-        ArrayList<Carta> cartas = this.tableu.sacarCartas(numColumna, 1);
-        if (!(this.foundation.agregarCarta(cartas.get(0), numFoundation))) {
-            this.tableu.agregarCartas(numColumna, cartas);
-            return false;
-        }
+        ArrayList<Carta> cartas = this.tableu.obtenerCartasExpuestas(numColumna, 1);
+        if (!(this.foundation.agregarCarta(cartas.get(0), numFoundation))) {return false;}
+        this.tableu.sacarCartas(numColumna, 1);
         return true;
     }
 

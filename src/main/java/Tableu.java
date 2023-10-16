@@ -28,4 +28,14 @@ public class Tableu {
         Columna columnaSeleccionada = tableuColumnas.get(posColumna);
         return columnaSeleccionada.sacarCartas(cantCartas);
     }
+
+    public ArrayList<Carta> obtenerCartasExpuestas(int numColumna, int cantCartas) {
+        if (columnaInvalida(numColumna) || cantCartas <= 0) {
+            return new ArrayList<>();
+        }
+        int posColumna = numColumna - 1;
+        Columna columnaSeleccionada = tableuColumnas.get(posColumna);
+        return columnaSeleccionada.obtenerCartas(cantCartas);
+    }
+
 }

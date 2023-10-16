@@ -56,6 +56,17 @@ public class Columna {
         return aux;
     }
 
+    public ArrayList<Carta> obtenerCartas(int cantidad) {
+        if(cantidad > cartasVisibles.size()) {
+            throw new RuntimeException("No se puede sacar esa cantidad de cartas");
+        }
+        var aux = new ArrayList<Carta>();
+        for (int i = 0; i < cantidad; i++) {
+            aux.add(0, cartasVisibles.get(cartasVisibles.size()-1));
+        }
+        return aux;
+    }
+
     public ArrayList<Carta> getCartasVisibles() {
         return cartasVisibles;
     }
