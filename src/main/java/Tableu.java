@@ -7,20 +7,6 @@ public class Tableu {
         this.tableuColumnas = columnas;
     }
 
-    private boolean paloContrario(Carta a, Carta b) {
-        if (a.getPalo() == Carta.Palo.PICA || a.getPalo() == Carta.Palo.TREBOL){
-            return b.getPalo() == Carta.Palo.DIAMANTE || b.getPalo() == Carta.Palo.CORAZON;
-        }
-        return b.getPalo() == Carta.Palo.TREBOL || b.getPalo() == Carta.Palo.PICA;
-    }
-
-    private boolean cartaValida(Carta cartaApoyada,Carta cartaRecibida){
-        int unNumeroMenos = -1;
-        if (!paloContrario(cartaApoyada, cartaRecibida)){
-            return false;
-        }else return cartaApoyada.getNumero() + unNumeroMenos == cartaRecibida.getNumero();
-    }
-
     private boolean columnaInvalida(int numColumna) {
         return !(numColumna <= tableuColumnas.size() && numColumna >= 1);
     }
@@ -31,24 +17,7 @@ public class Tableu {
         }
         int posColumna = numColumna - 1;
         Columna columnaSeleccionada = tableuColumnas.get(posColumna);
-        ArrayList<Carta> visibles = columnaSeleccionada.getCartasVisibles();
-        if (cartas.isEmpty()){
-            columnaSeleccionada.agregarCartas(cartas);
-            return true;
-        }
-        if (visibles.isEmpty()) {
-            if (cartas.get(0).getNumero() == 13 ){
-                columnaSeleccionada.agregarCartas(cartas);
-                return true;
-            }
-            return false;
-        }
-        Carta cartaApoyada = (visibles.get(visibles.size()-1));
-        if (cartaValida(cartaApoyada, cartas.get(0))) {
-            columnaSeleccionada.agregarCartas(cartas);
-            return true;
-        }
-        return false;
+        return columnaSeleccionada.agregarCartas(cartas);
     }
 
     public ArrayList<Carta> sacarCartas(int numColumna, int cantCartas) {

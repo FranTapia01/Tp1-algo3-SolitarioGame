@@ -171,8 +171,8 @@ public class TableuTest {
         Tableu tableu = new Tableu(columnas);
         Columna columnaSeleccionada = columnas.get(6);
         ArrayList<Carta> cartasAgregarColumna = new ArrayList<>();
-        cartasAgregarColumna.add(new Carta(5, Carta.Palo.TREBOL));
-        cartasAgregarColumna.add(new Carta(4, Carta.Palo.CORAZON));
+        cartasAgregarColumna.add(new Carta(6, Carta.Palo.TREBOL));
+        cartasAgregarColumna.add(new Carta(5, Carta.Palo.CORAZON));
         columnaSeleccionada.agregarCartas(cartasAgregarColumna);
 
         ArrayList<Carta> cartasSacadas = tableu.sacarCartas(7, 2);
@@ -193,8 +193,8 @@ public class TableuTest {
         Tableu tableu = new Tableu(columnas);
         Columna columnaSeleccionada = columnas.get(6);
         ArrayList<Carta> cartasAgregarColumna = new ArrayList<>();
-        cartasAgregarColumna.add(new Carta(5, Carta.Palo.TREBOL));
-        cartasAgregarColumna.add(new Carta(4, Carta.Palo.CORAZON));
+        cartasAgregarColumna.add(new Carta(6, Carta.Palo.TREBOL));
+        cartasAgregarColumna.add(new Carta(5, Carta.Palo.CORAZON));
         columnaSeleccionada.agregarCartas(cartasAgregarColumna);
 
         ArrayList<Carta> cartasSacadas = tableu.sacarCartas(7, 3);

@@ -10,8 +10,37 @@ public class Columna {
         reponerCartasVisibles();
     }
 
-    public void agregarCartas(ArrayList<Carta> cartas) {
-        cartasVisibles.addAll(cartas);
+    private boolean paloContrario(Carta a, Carta b) {
+        if (a.getPalo() == Carta.Palo.PICA || a.getPalo() == Carta.Palo.TREBOL){
+            return b.getPalo() == Carta.Palo.DIAMANTE || b.getPalo() == Carta.Palo.CORAZON;
+        }
+        return b.getPalo() == Carta.Palo.TREBOL || b.getPalo() == Carta.Palo.PICA;
+    }
+
+    private boolean cartaValida(Carta cartaApoyada,Carta cartaRecibida){
+        int unNumeroMenos = -1;
+        if (!paloContrario(cartaApoyada, cartaRecibida)){
+            return false;
+        }else return cartaApoyada.getNumero() + unNumeroMenos == cartaRecibida.getNumero();
+    }
+
+    public boolean agregarCartas(ArrayList<Carta> cartas) {
+        if (cartas.isEmpty()) {
+            return true;
+        }
+        if (cartasVisibles.isEmpty()) {
+            if (cartas.get(0).getNumero() == 13) {
+                cartasVisibles.addAll(cartas);
+                return true;
+            }
+            return false;
+        }
+        Carta cartaApoyada = (cartasVisibles.get(cartasVisibles.size()-1));
+        if (cartaValida(cartaApoyada, cartas.get(0))) {
+            cartasVisibles.addAll(cartas);
+            return true;
+        }
+        return false;
     }
 
     public ArrayList<Carta> sacarCartas(int cantidad) {
