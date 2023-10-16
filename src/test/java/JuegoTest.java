@@ -3,38 +3,56 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 public class JuegoTest {
+    public static final int seed = 2;
     @Test
-    public void Test1() {
-        Juego juego = new Juego(Juego.EstadoDeInicializacion.CASITERMINADO);
+    public void testJuegoIniciadoNoEstaGanado() {
+        Juego juego = new Juego(seed);
 
-        juego.tableuToFoundation(1, 4);
+        boolean juegoEstaGanado = juego.juegoGanado();
 
-        assertTrue(juego.juegoGanado());
+        assertFalse(juegoEstaGanado);
     }
 
     @Test
-    public void Test2() {
-        Juego juego = new Juego(Juego.EstadoDeInicializacion.PREDECIBLE);
+    public void testDealValido() {//deal = mover del stock al tableu
+        Juego juego = new Juego(seed);
         for (int i = 0; i < 5; i++) juego.pasarCarta();
 
-        assertTrue(juego.stockWasteToTableu(7));
-        assertFalse(juego.juegoGanado());
+        boolean movimientoValido = juego.stockWasteToTableu(7);
+
+        assertTrue(movimientoValido);
     }
 
     @Test
-    public void Test3() {
-        Juego juego = new Juego(Juego.EstadoDeInicializacion.PREDECIBLE);
+    public void testMovimientosFoundationValidos() {
+        Juego juego = new Juego(seed);
         for (int i = 0; i < 22; i++) juego.pasarCarta();
 
-        assertTrue(juego.stockWasteToFoundation(3));
-        assertTrue(juego.foundationToFoundatiom(3, 1));
-        assertFalse(juego.foundationToTableu(1, 5));
-        assertFalse(juego.tableuToFoundation(4, 4));
+        boolean movimiento1 = juego.stockWasteToFoundation(3);
+        boolean movimiento2 = juego.foundationToFoundation(3, 1);
+
+        assertTrue(movimiento1);
+        assertTrue(movimiento2);
     }
 
     @Test
-    public void Test4() {//serie de movimientos con la seed fija pra comprobar que se hace lo que deberia.
-        Juego juego = new Juego(Juego.EstadoDeInicializacion.PREDECIBLE);
+    public void testMovimientosFoundationInvalidos() {
+        Juego juego = new Juego(seed);
+        for (int i = 0; i < 22; i++) juego.pasarCarta();
+        juego.stockWasteToFoundation(3);
+        juego.foundationToFoundation(3, 1);
+
+        boolean movimiento1 = juego.foundationToTableu(1, 5);
+        boolean movimiento2 = juego.tableuToFoundation(4, 4);
+        //boolean movimiento3 = juego.foundationToFoundation()
+
+        assertFalse(movimiento1);
+        assertFalse(movimiento2);
+    }
+
+    @Test
+    public void testMoverMasDeUnaCarta() {
+        Juego juego = new Juego(seed);
         for (int i = 0; i < 5; i++) juego.pasarCarta();
         juego.stockWasteToTableu(7);
         for (int i = 0; i < 3; i++) juego.pasarCarta();
@@ -44,13 +62,10 @@ public class JuegoTest {
         for (int i = 0; i < 5; i++) juego.pasarCarta();
         juego.stockWasteToTableu(3);
 
-        assertTrue(juego.tableuToTableu(7, 6, 2));
-        assertFalse(juego.tableuToTableu(1, 2, 2));
-    }
+        boolean movimiento1 = juego.tableuToTableu(7, 6, 2);
+        boolean movimiento2 = juego.tableuToTableu(1, 2, 2);
 
-    @Test
-    public void Test5() {
-        Juego juego = new Juego(Juego.EstadoDeInicializacion.RANDOM);
-        assertFalse(juego.juegoGanado());
+        assertTrue(movimiento1);
+        assertFalse(movimiento2);
     }
 }

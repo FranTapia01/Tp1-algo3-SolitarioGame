@@ -7,59 +7,13 @@ public class Juego {
     private final Foundation foundation;
     private final StockWaste stockWaste;
 
-    public enum EstadoDeInicializacion {
-        RANDOM, PREDECIBLE, CASITERMINADO
-    }
-
-    public Juego(EstadoDeInicializacion estado){
+    public Juego(int seed){
         Pile stock = crearStock();
-        if(estado == EstadoDeInicializacion.CASITERMINADO) {
-            Pile stockInvertido = new Pile();
-            for (int i = 0; i < 52; i++) {
-                stockInvertido.push(stock.pop());
-            }
-            this.foundation = new Foundation();
-            for (int i = 1; i < 5; i++) {
-                for (int j = 0; j < 13; j++) {
-                    foundation.agregarCarta(stockInvertido.pop(), i);
-                }
-            }
-            ArrayList<Columna> columnas = new ArrayList<>();
-            for (int i = 1; i < 8 ; i++){
-                Pile pileInicial = new Pile();
-                Columna columna = new Columna(pileInicial);
-                columnas.add(columna);
-            }
-            this.tableu = new Tableu(columnas);
-            foundationToTableu(4, 1);
-            this.stockWaste = new StockWaste(stockInvertido);
-
-        }else {
-            mezclarMazo(stock, estado);
-            ArrayList<Columna> columnas = new ArrayList<>();
-            for (int i = 1; i < 8; i++) {
-                Pile monton = new Pile();
-                for (int j = 0; j < i; j++) {
-                    monton.add(stock.pop());
-                }
-                Columna columna = new Columna(monton);
-                columnas.add(columna);
-            }
-            this.foundation = new Foundation();
-            this.tableu = new Tableu(columnas);
-            this.stockWaste = new StockWaste(stock);
-        }
-    }
-
-    private Pile crearStock(){
-        Pile stock = new Pile();
-        for(Carta.Palo palo: Carta.Palo.values()) {
-            for (int j = 1; j < 14; j++) {
-                Carta carta = new Carta(j, palo);
-                stock.push(carta);
-            }
-        }
-        return stock;
+        mezclarStock(stock, seed);
+        ArrayList<Columna> columnas = crearColumnas(stock);
+        this.foundation = new Foundation();
+        this.tableu = new Tableu(columnas);
+        this.stockWaste = new StockWaste(stock);
     }
 
     public boolean pasarCarta() {
@@ -98,7 +52,7 @@ public class Juego {
         return true;
     }
 
-    public boolean foundationToFoundatiom(int numFoundationOrigen, int numFoundationDestino) {
+    public boolean foundationToFoundation(int numFoundationOrigen, int numFoundationDestino) {
         Carta carta = this.foundation.sacarCarta(numFoundationOrigen);
         if (!(this.foundation.agregarCarta(carta, numFoundationDestino))) {
             this.foundation.agregarCarta(carta, numFoundationOrigen);
@@ -119,13 +73,35 @@ public class Juego {
 
     public boolean juegoGanado() {return this.foundation.estaCompleta();}
 
-    private void mezclarMazo(Pile mazo, EstadoDeInicializacion estado) {
-        if(estado == EstadoDeInicializacion.PREDECIBLE) {
-            var rnd = new Random(2);
-            Collections.shuffle(mazo, rnd);
-        }else if(estado == EstadoDeInicializacion.RANDOM){
-            Collections.shuffle(mazo);
+    private Pile crearStock(){
+        int cantCartasDeUnPalo = 13;
+        Pile stock = new Pile();
+        for(Carta.Palo palo: Carta.Palo.values()) {
+            for (int j = 1; j <= cantCartasDeUnPalo; j++) {
+                Carta carta = new Carta(j, palo);
+                stock.push(carta);
+            }
         }
+        return stock;
+    }
+
+    private ArrayList<Columna> crearColumnas(Pile mazo) {
+        ArrayList<Columna> columnas = new ArrayList<>();
+        int cantDeColumnas = 7;
+        for (int i = 1; i <= cantDeColumnas; i++) {
+            Pile monton = new Pile();
+            for (int j = 0; j < i; j++) {
+                monton.add(mazo.pop());
+            }
+            Columna columna = new Columna(monton);
+            columnas.add(columna);
+        }
+        return columnas;
+    }
+
+    private void mezclarStock(Pile stock, int seed) {
+        var rnd = new Random(seed);
+        Collections.shuffle(stock, rnd);
     }
 
     public Foundation getFoundation() {

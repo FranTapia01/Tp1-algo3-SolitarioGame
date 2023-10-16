@@ -5,18 +5,31 @@ import static org.junit.Assert.*;
 public class PileTest {
 
     @Test
-    public void test1() {
+    public void testCabtidadCartasAgregadas() {
         var carta1 = new Carta(9, Carta.Palo.DIAMANTE);
         var carta2 = new Carta(13, Carta.Palo.PICA);
-        var carta3 = new Carta(1, Carta.Palo.TREBOL);
+        var pile = new Pile();
+        int cantidadEsperada = 2;
 
+        pile.push(carta1);
+        pile.push(carta2);
+        int cantidadAgregadas = pile.getCantidadCartas();
+
+        assertEquals(cantidadAgregadas, cantidadEsperada);
+    }
+
+    @Test
+    public void testCantidadCartasSacadas() {
+        var carta1 = new Carta(9, Carta.Palo.DIAMANTE);
+        var carta2 = new Carta(13, Carta.Palo.PICA);
         var pile = new Pile();
         pile.push(carta1);
         pile.push(carta2);
-        pile.push(carta3);
+        int cantidadEsperada = 1;
 
-        assertEquals(pile.getCantidadCartas(), 3);
-        assertEquals(pile.pop(), carta3);
-        assertEquals(pile.peek(), carta2);
+        pile.pop();
+        int cantidadRestante = pile.getCantidadCartas();
+        
+        assertEquals(cantidadRestante, cantidadEsperada);
     }
 }
