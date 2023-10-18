@@ -6,7 +6,7 @@ import static org.junit.Assert.*;
 
 public class FoundationTest {
     @Test
-    public void test1() {
+    public void testAgregarCartaConNumeroIncorrecto() {
 
         var carta1 = new Carta(2, Carta.Palo.DIAMANTE);
         var foundation = new Foundation();
@@ -15,7 +15,7 @@ public class FoundationTest {
     }
 
     @Test
-    public void test2() {
+    public void testAgregarCartaAFoundationIncorrecta() {
 
         var carta1 = new Carta(1, Carta.Palo.DIAMANTE);
         var foundation = new Foundation();
@@ -24,7 +24,7 @@ public class FoundationTest {
     }
 
     @Test
-    public void test3() {
+    public void testAgregarCartaValida() {
 
         var carta1 = new Carta(1, Carta.Palo.DIAMANTE);
         var foundation = new Foundation();
@@ -33,7 +33,7 @@ public class FoundationTest {
     }
 
     @Test
-    public void test4() {
+    public void testAgregarCartaIncorrectaSobreOtra() {
 
         var carta1 = new Carta(1, Carta.Palo.DIAMANTE);
         var carta2 = new Carta(3, Carta.Palo.DIAMANTE);
@@ -44,7 +44,7 @@ public class FoundationTest {
     }
 
     @Test
-    public void test5() {
+    public void testAgregarCartaCorrectaSobreOtra() {
 
         var carta1 = new Carta(1, Carta.Palo.DIAMANTE);
         var carta2 = new Carta(2, Carta.Palo.DIAMANTE);
@@ -54,7 +54,7 @@ public class FoundationTest {
         assertTrue(foundation.agregarCarta(carta2,1));
     }
     @Test
-    public void test6() {
+    public void testAgregarCartaDeDistintoPalo() {
 
         var carta1 = new Carta(1, Carta.Palo.DIAMANTE);
         var carta2 = new Carta(2, Carta.Palo.PICA);
@@ -65,7 +65,7 @@ public class FoundationTest {
     }
 
     @Test
-    public void test7() {
+    public void testSacarCartaAgregada() {
 
         var carta1 = new Carta(1, Carta.Palo.DIAMANTE);
         var foundation = new Foundation();
@@ -75,7 +75,7 @@ public class FoundationTest {
     }
 
     @Test
-    public void test8() {
+    public void testAgregarCartaSiguienteACartaSacada() {
 
         var carta1 = new Carta(1, Carta.Palo.DIAMANTE);
         var carta2 = new Carta(2, Carta.Palo.DIAMANTE);
@@ -87,7 +87,7 @@ public class FoundationTest {
     }
 
     @Test
-    public void test9() {
+    public void testAgregarMismaCartaLuegoDeSerSacada() {
 
         var carta1 = new Carta(1, Carta.Palo.DIAMANTE);
         var foundation = new Foundation();
@@ -98,14 +98,14 @@ public class FoundationTest {
     }
 
     @Test
-    public void test10() {
+    public void testEstaCompletaFoundationVacia() {
 
         var foundation = new Foundation();
         assertFalse(foundation.estaCompleta());
     }
 
     @Test
-    public void test11() {
+    public void testEstaCompletaFoundationLlena() {
 
         var foundation = new Foundation();
         for(int i = 1; i < 14 ;i++){
