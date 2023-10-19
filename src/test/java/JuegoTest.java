@@ -1,9 +1,12 @@
 import org.junit.Test;
 
+import java.util.ArrayList;
+
 import static org.junit.Assert.*;
 
 public class JuegoTest {
     public static final int seed = 2;
+
     @Test
     public void testJuegoIniciadoNoEstaGanado() {
         Juego juego = new Juego(seed);
@@ -67,5 +70,15 @@ public class JuegoTest {
 
         assertTrue(movimiento1);
         assertFalse(movimiento2);
+    }
+
+    @Test
+    public void testIniciarJuegoEstadoParticular() {
+        ArrayList<Columna> columnas = new ArrayList<>();
+        Pile stock = new Pile();
+        Foundation foundation = new Foundation();
+        Tableu tableu = new Tableu(columnas);
+        StockWaste stockWaste = new StockWaste(stock);
+        Juego juego = new Juego(foundation, tableu, stockWaste);
     }
 }

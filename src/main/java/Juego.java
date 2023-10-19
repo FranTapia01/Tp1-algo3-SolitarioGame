@@ -16,6 +16,12 @@ public class Juego {
         this.stockWaste = new StockWaste(stock);
     }
 
+    public Juego(Foundation foundation, Tableu tableu, StockWaste stockWaste){
+        this.foundation = foundation;
+        this.tableu = tableu;
+        this.stockWaste = stockWaste;
+    }
+
     public boolean pasarCarta() {
         return stockWaste.pasarCarta();
     }
