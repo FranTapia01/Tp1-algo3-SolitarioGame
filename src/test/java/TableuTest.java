@@ -4,8 +4,8 @@ import java.util.ArrayList;
 
 public class TableuTest {
     //tests de agregarCarta
-    @Test //Número de columna inválido
-    public void test1() {
+    @Test
+    public void testAgregarColumnaInvalida() {
         ArrayList<Columna> columnas = new ArrayList<>();
         for (int i = 0; i < 7; i++) {
             Pile pila = new Pile();
@@ -15,8 +15,8 @@ public class TableuTest {
         Tableu tableu = new Tableu(columnas);
         assertFalse(tableu.agregarCartas(8, new ArrayList<>()));
     }
-    @Test //Array de una carta
-    public void test2() {
+    @Test
+    public void testAgregarUna() {
         ArrayList<Columna> columnas = new ArrayList<>();
         for (int i = 0; i < 7; i++) {
             Pile pila = new Pile();
@@ -31,8 +31,8 @@ public class TableuTest {
         assertTrue(tableu.agregarCartas(5, cartas));
         assertEquals((columnaSeleccionada.getCartasVisibles()).size(), 2);
     }
-    @Test //Array vacío carta válida
-    public void test3() {
+    @Test
+    public void testAgregarNinguna() {
         ArrayList<Columna> columnas = new ArrayList<>();
         for (int i = 0; i < 7; i++) {
             Pile pila = new Pile();
@@ -46,8 +46,8 @@ public class TableuTest {
         assertTrue(tableu.agregarCartas(5, cartas));
         assertEquals((columnaSeleccionada.getCartasVisibles()).size(), 1);
     }
-    @Test //Columna vacía carta válida
-    public void test4() {
+    @Test
+    public void testAgregarValidoColumnaVacia() {
         ArrayList<Columna> columnas = new ArrayList<>();
         for (int i = 0; i < 7; i++) {
             Pile pila = new Pile();
@@ -63,8 +63,8 @@ public class TableuTest {
         assertTrue(tableu.agregarCartas(5, cartas));
         assertEquals((columnaSeleccionada.getCartasVisibles()).size(), 1);
     }
-    @Test //Columna vacía carta inválida
-    public void test5() {
+    @Test
+    public void testAgregarInvalidoColumnaVacia() {
         ArrayList<Columna> columnas = new ArrayList<>();
         for (int i = 0; i < 7; i++) {
             Pile pila = new Pile();
@@ -80,8 +80,8 @@ public class TableuTest {
         assertFalse(tableu.agregarCartas(5, cartas));
         assertEquals((columnaSeleccionada.getCartasVisibles()).size(), 0);
     }
-    @Test //Array de una carta inválida por Palo
-    public void test6() {
+    @Test
+    public void testAgregarPaloInvalido() {
         ArrayList<Columna> columnas = new ArrayList<>();
         for (int i = 0; i < 7; i++) {
             Pile pila = new Pile();
@@ -96,8 +96,8 @@ public class TableuTest {
         assertFalse(tableu.agregarCartas(5, cartas));
         assertEquals((columnaSeleccionada.getCartasVisibles()).size(), 1);
     }
-    @Test //Array de una carta inválida por número
-    public void test7() {
+    @Test
+    public void testAgregarNumeroInvalido() {
         ArrayList<Columna> columnas = new ArrayList<>();
         for (int i = 0; i < 7; i++) {
             Pile pila = new Pile();
@@ -112,8 +112,8 @@ public class TableuTest {
         assertFalse(tableu.agregarCartas(5, cartas));
         assertEquals((columnaSeleccionada.getCartasVisibles()).size(), 1);
     }
-    @Test //Array de más de una carta
-    public void test8() {
+    @Test
+    public void testAgregarVarias() {
         ArrayList<Columna> columnas = new ArrayList<>();
         for (int i = 0; i < 7; i++) {
             Pile pila = new Pile();
@@ -130,8 +130,8 @@ public class TableuTest {
         assertEquals((columnaSeleccionada.getCartasVisibles()).size(), 3);
     }
     //tests sacarCarta
-    @Test //Número de columna inválido
-    public void test9() {
+    @Test
+    public void testSacarColumnaInvalida() {
         ArrayList<Columna> columnas = new ArrayList<>();
         for (int i = 0; i < 7; i++) {
             Pile pila = new Pile();
@@ -144,8 +144,8 @@ public class TableuTest {
 
         assertEquals(cartasSacadas.size(), 0);
     }
-    @Test //Cantidad a sacar = 0
-    public void test10() {
+    @Test
+    public void testSacarNinguna() {
         ArrayList<Columna> columnas = new ArrayList<>();
         for (int i = 0; i < 7; i++) {
             Pile pila = new Pile();
@@ -160,8 +160,8 @@ public class TableuTest {
         assertEquals(cartasSacadas.size(), 0);
         assertEquals((columnaSeleccionada.getCartasVisibles()).size(), 1);
     }
-    @Test //Saca más de una carta pero quedan cartas
-    public void test11() {
+    @Test
+    public void testSacarParte() {
         ArrayList<Columna> columnas = new ArrayList<>();
         for (int i = 0; i < 7; i++) {
             Pile pila = new Pile();
@@ -182,8 +182,8 @@ public class TableuTest {
         assertEquals((cartasSacadas.get(0).getPalo()), Carta.Palo.TREBOL);
         assertEquals((cartasSacadas.get(1).getPalo()), Carta.Palo.CORAZON);
     }
-    @Test //Saca todas las cartas de la columna
-    public void test12() {
+    @Test
+    public void testSacarTodo() {
         ArrayList<Columna> columnas = new ArrayList<>();
         for (int i = 0; i < 7; i++) {
             Pile pila = new Pile();
