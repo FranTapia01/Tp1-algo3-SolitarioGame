@@ -1,27 +1,13 @@
 import java.util.ArrayList;
 
-public class Columna {
-    private final Pile cartasNoVisibles;
-    private final ArrayList<Carta> cartasVisibles;
+public abstract class Columna {
+    protected final Pile cartasNoVisibles;
+    protected final ArrayList<Carta> cartasVisibles;
 
     public Columna(Pile cartasNoVisibles) {
         this.cartasNoVisibles = cartasNoVisibles;
         this.cartasVisibles = new ArrayList<>();
         reponerCartasVisibles();
-    }
-
-    private boolean paloContrario(Carta a, Carta b) {
-        if (a.getPalo() == Carta.Palo.PICA || a.getPalo() == Carta.Palo.TREBOL){
-            return b.getPalo() == Carta.Palo.DIAMANTE || b.getPalo() == Carta.Palo.CORAZON;
-        }
-        return b.getPalo() == Carta.Palo.TREBOL || b.getPalo() == Carta.Palo.PICA;
-    }
-
-    private boolean cartaValida(Carta cartaApoyada,Carta cartaRecibida){
-        int unNumeroMenos = -1;
-        if (!paloContrario(cartaApoyada, cartaRecibida)){
-            return false;
-        }else return cartaApoyada.getNumero() + unNumeroMenos == cartaRecibida.getNumero();
     }
 
     public boolean agregarCartas(ArrayList<Carta> cartas) {
@@ -44,8 +30,8 @@ public class Columna {
     }
 
     public ArrayList<Carta> sacarCartas(int cantidad) {
-        if(cantidad > cartasVisibles.size()) {
-            throw new RuntimeException("No se puede sacar esa cantidad de cartas");
+        if(cantidadInvalida(cantidad)) {
+            return new ArrayList<>();
         }
         var aux = new ArrayList<Carta>();
         for (int i = 0; i < cantidad; i++) {
@@ -57,7 +43,7 @@ public class Columna {
     }
 
     public ArrayList<Carta> obtenerCartas(int cantidad) {
-        if(cantidad > cartasVisibles.size()) {
+        if(cantidadInvalida(cantidad)) {
             throw new RuntimeException("No se puede sacar esa cantidad de cartas");
         }
         var aux = new ArrayList<Carta>();
@@ -80,4 +66,8 @@ public class Columna {
     public int getCantidadCartasNoVisibles() {
         return cartasNoVisibles.size();
     }
+
+    abstract boolean cartaValida(Carta cartaApoyada,Carta cartaRecibida);
+
+    abstract boolean cantidadInvalida(int cant);
 }
