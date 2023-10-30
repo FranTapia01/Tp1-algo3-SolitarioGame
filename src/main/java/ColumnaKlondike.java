@@ -22,7 +22,7 @@ public class ColumnaKlondike extends Columna{
     }
 
     @Override
-    boolean cantidadInvalida(int cant) {
+    boolean cantidadValida(int cant) {
         return cant <= cartasVisibles.size();
     }
 }

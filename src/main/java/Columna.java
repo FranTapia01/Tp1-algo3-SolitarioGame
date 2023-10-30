@@ -30,7 +30,7 @@ public abstract class Columna {
     }
 
     public ArrayList<Carta> sacarCartas(int cantidad) {
-        if(cantidadInvalida(cantidad)) {
+        if(!cantidadValida(cantidad)) {
             return new ArrayList<>();
         }
         var aux = new ArrayList<Carta>();
@@ -43,7 +43,7 @@ public abstract class Columna {
     }
 
     public ArrayList<Carta> obtenerCartas(int cantidad) {
-        if(cantidadInvalida(cantidad)) {
+        if(!cantidadValida(cantidad)) {
             throw new RuntimeException("No se puede sacar esa cantidad de cartas");
         }
         var aux = new ArrayList<Carta>();
@@ -69,5 +69,5 @@ public abstract class Columna {
 
     abstract boolean cartaValida(Carta cartaApoyada,Carta cartaRecibida);
 
-    abstract boolean cantidadInvalida(int cant);
+    abstract boolean cantidadValida(int cant);
 }

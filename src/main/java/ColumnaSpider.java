@@ -13,7 +13,7 @@ public class ColumnaSpider extends Columna{
     }
 
     @Override
-    boolean cantidadInvalida(int cant) {
+    boolean cantidadValida(int cant) {
         int tamanio = cartasVisibles.size();
         if (cant > tamanio) return false;
         var cartasSolicitadas = new ArrayList<Carta>();
