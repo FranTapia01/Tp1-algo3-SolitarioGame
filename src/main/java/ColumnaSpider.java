@@ -26,4 +26,19 @@ public class ColumnaSpider extends Columna{
         }
         return true;
     }
+
+    boolean columnaCompleta() {
+        int tamanio = cartasVisibles.size();
+        int cantidadCartasCompleto = 13;
+        if (tamanio < cantidadCartasCompleto) return false;
+
+        var paloSeleccionado = cartasVisibles.get(cantidadCartasCompleto).getPalo();
+
+        for (int i = 1; i <= cantidadCartasCompleto; i++) {
+            Carta carta = cartasVisibles.get(cantidadCartasCompleto - i);
+            if (carta.getPalo() != paloSeleccionado) return false;
+            if (carta.getNumero() != i) return false;
+        }
+        return true;
+    }
 }
