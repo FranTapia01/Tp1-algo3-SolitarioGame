@@ -1,9 +1,9 @@
 import java.util.ArrayList;
 
-public class Tableu {
-    protected final ArrayList<Columna> tableuColumnas;
+public class Tableu<T extends Columna> {
+    protected final ArrayList<T> tableuColumnas;
 
-    public Tableu(ArrayList<Columna> columnas) {
+    public Tableu(ArrayList<T> columnas) {
         this.tableuColumnas = columnas;
     }
 
