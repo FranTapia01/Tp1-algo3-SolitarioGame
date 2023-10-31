@@ -4,6 +4,11 @@ import java.util.stream.IntStream;
 public class Foundation {
     private final ArrayList<Pile> foundationsPiles; // 4 piles
 
+    public Foundation(int cantPiles){
+        this.foundationsPiles =  new ArrayList<>();
+        IntStream.range(0, cantPiles).forEach(i -> this.foundationsPiles.add(new Pile()));
+    }
+
     private boolean cartaValida(Carta cartaApoyada,Carta cartaRecibida){
         int unNumeroExtra = 1;
         if (cartaApoyada.getPalo() != cartaRecibida.getPalo()){
@@ -11,11 +16,6 @@ public class Foundation {
         }else return cartaApoyada.getNumero() + unNumeroExtra == cartaRecibida.getNumero();
     }
 
-    public Foundation(){
-        this.foundationsPiles =  new ArrayList<>();
-        int cantidadPiles = 4;
-        IntStream.range(0, cantidadPiles).forEach(i -> this.foundationsPiles.add(new Pile()));
-    }
 
     public boolean agregarCarta(Carta cartaRecibida ,int numFoundation ){
         int vacio = 0;

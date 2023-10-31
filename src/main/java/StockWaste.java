@@ -2,7 +2,7 @@ import java.util.Collections;
 
 public class StockWaste {
     private Pile stock;
-    private Pile wastePile;//
+    private Pile wastePile;
 
     public StockWaste(Pile pile) {
         this.stock = pile;

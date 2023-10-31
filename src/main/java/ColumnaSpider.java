@@ -7,13 +7,13 @@ public class ColumnaSpider extends Columna{
     }
 
     @Override
-    boolean cartaValida(Carta cartaApoyada, Carta cartaRecibida) {
+    protected boolean cartaValida(Carta cartaApoyada, Carta cartaRecibida) {
         int unNumeroMenos = -1;
         return cartaApoyada.getNumero() + unNumeroMenos == cartaRecibida.getNumero();
     }
 
     @Override
-    boolean cantidadValida(int cant) {
+    protected boolean cantidadValida(int cant) {
         int tamanio = cartasVisibles.size();
         if (cant > tamanio) return false;
         var cartasSolicitadas = new ArrayList<Carta>();
@@ -27,7 +27,7 @@ public class ColumnaSpider extends Columna{
         return true;
     }
 
-    boolean columnaCompleta() {
+    public boolean columnaCompleta() {
         int tamanio = cartasVisibles.size();
         int cantidadCartasCompleto = 13;
         if (tamanio < cantidadCartasCompleto) return false;

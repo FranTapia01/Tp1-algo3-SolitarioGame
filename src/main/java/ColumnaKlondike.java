@@ -14,7 +14,7 @@ public class ColumnaKlondike extends Columna{
     }
 
     @Override
-    boolean cartaValida(Carta cartaApoyada, Carta cartaRecibida) {
+    protected boolean cartaValida(Carta cartaApoyada, Carta cartaRecibida) {
         int unNumeroMenos = -1;
         if (!paloContrario(cartaApoyada, cartaRecibida)){
             return false;
@@ -22,7 +22,7 @@ public class ColumnaKlondike extends Columna{
     }
 
     @Override
-    boolean cantidadValida(int cant) {
+    protected boolean cantidadValida(int cant) {
         return cant <= cartasVisibles.size();
     }
 }
