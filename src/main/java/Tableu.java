@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 
 public class Tableu {
-    private final ArrayList<Columna> tableuColumnas;
+    protected final ArrayList<Columna> tableuColumnas;
 
     public Tableu(ArrayList<Columna> columnas) {
         this.tableuColumnas = columnas;
