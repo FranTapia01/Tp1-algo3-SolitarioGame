@@ -43,11 +43,6 @@ public class ColumnaSpider extends Columna{
     }
     public ArrayList<Carta> sacarColumnaCompletada() {
         if (!columnaCompleta()) {return new ArrayList<>();}
-        var dev = new ArrayList<Carta>();
-        for (int i = cartasVisibles.size(); i >= 0; i--) {
-            Carta ultCarta = (sacarCartas(1)).get(0);
-            dev.add(0, ultCarta);
-        }
-        return dev;
+        return sacarCartas(13);
     }
 }
