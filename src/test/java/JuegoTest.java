@@ -81,4 +81,6 @@ public class JuegoTest {
         StockWaste stockWaste = new StockWaste(stock);
         Juego juego = new Juego(foundation, tableu, stockWaste);
     }
+
+
 }

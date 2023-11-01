@@ -1,6 +1,7 @@
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Tableu<T extends Columna> {
+public class Tableu<T extends Columna> implements Serializable {
     protected final ArrayList<T> tableuColumnas;
 
     public Tableu(ArrayList<T> columnas) {

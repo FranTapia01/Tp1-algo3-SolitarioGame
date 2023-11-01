@@ -11,7 +11,7 @@ public class ColumnaTest {
         var carta1 = new Carta(13, Carta.Palo.DIAMANTE);
         var cartas = new ArrayList<Carta>();
         var pile = new Pile();
-        Columna col = new Columna(pile);
+        Columna col = new ColumnaSpider(pile);
         cartas.add(carta1);
 
         col.agregarCartas(cartas);
@@ -26,7 +26,7 @@ public class ColumnaTest {
         var carta1 = new Carta(12, Carta.Palo.DIAMANTE);
         var cartas = new ArrayList<Carta>();
         var pile = new Pile();
-        Columna col = new Columna(pile);
+        Columna col = new ColumnaSpider(pile);
         cartas.add(carta1);
 
         col.agregarCartas(cartas);
@@ -44,7 +44,7 @@ public class ColumnaTest {
         pile.push(carta1);
         pile.push(carta2);
         cartas.add(carta3);
-        Columna col = new Columna(pile);
+        Columna col = new ColumnaSpider(pile);
 
         col.agregarCartas(cartas);
 
@@ -62,7 +62,7 @@ public class ColumnaTest {
         pile.push(carta1);
         pile.push(carta2);
         cartas.add(carta3);
-        Columna col = new Columna(pile);
+        Columna col = new ColumnaSpider(pile);
 
         col.agregarCartas(cartas);
 
@@ -81,7 +81,7 @@ public class ColumnaTest {
         pile.push(carta2);
         cartas.add(carta3);
         cartas.add(carta4);
-        Columna col = new Columna(pile);
+        Columna col = new ColumnaSpider(pile);
 
         col.agregarCartas(cartas);
 
@@ -103,7 +103,7 @@ public class ColumnaTest {
         pile.push(carta3);
         cartas.add(carta4);
         cartas.add(carta5);
-        Columna col = new Columna(pile);
+        Columna col = new ColumnaSpider(pile);
         col.agregarCartas(cartas);
 
         var cartasSacadas = col.sacarCartas(3);

@@ -1,6 +1,7 @@
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public abstract class Columna {
+public abstract class Columna implements Serializable {
     protected final Pile cartasNoVisibles;
     protected final ArrayList<Carta> cartasVisibles;
 

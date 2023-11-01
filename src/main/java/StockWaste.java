@@ -1,6 +1,7 @@
+import java.io.Serializable;
 import java.util.Collections;
 
-public class StockWaste {
+public class StockWaste implements Serializable {
     private Pile stock;
     private Pile wastePile;
 

@@ -1,7 +1,8 @@
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.stream.IntStream;
 
-public class Foundation {
+public class Foundation implements Serializable {
     private final ArrayList<Pile> foundationsPiles; // 4 piles
 
     public Foundation(int cantPiles){

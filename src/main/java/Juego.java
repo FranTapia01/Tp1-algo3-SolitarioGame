@@ -1,8 +1,9 @@
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Random;
 
-public abstract class Juego {
+public abstract class Juego implements Serializable {
     protected final Tableu tableu;
     protected final Foundation foundation;
     protected final StockWaste stockWaste;

@@ -147,6 +147,6 @@ public class SolitarioKlondike implements Solitario{
     }
 
     private boolean estaCoronada(ArrayList<Carta> cartas) {
-
+       return true;
     }
 }

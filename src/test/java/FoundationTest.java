@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import static org.junit.Assert.*;
 
 public class FoundationTest {
+
     @Test
     public void testAgregarCartaConNumeroIncorrecto() {
 
@@ -127,4 +128,6 @@ public class FoundationTest {
 
         assertTrue(foundation.estaCompleta());
     }
+
+
 }

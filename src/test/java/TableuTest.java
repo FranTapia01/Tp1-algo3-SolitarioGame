@@ -10,7 +10,7 @@ public class TableuTest {
         for (int i = 0; i < 7; i++) {
             Pile pila = new Pile();
             pila.add(new Carta(i+1, Carta.Palo.DIAMANTE));
-            columnas.add(new Columna(pila));
+            columnas.add(new ColumnaKlondike(pila));
         }
         Tableu tableu = new Tableu(columnas);
         assertFalse(tableu.agregarCartas(8, new ArrayList<>()));
@@ -21,7 +21,7 @@ public class TableuTest {
         for (int i = 0; i < 7; i++) {
             Pile pila = new Pile();
             pila.add(new Carta(i+1, Carta.Palo.DIAMANTE));
-            columnas.add(new Columna(pila));
+            columnas.add(new ColumnaKlondike(pila));
         }
         Tableu tableu = new Tableu(columnas);
         ArrayList<Carta> cartas = new ArrayList<>();
@@ -37,7 +37,7 @@ public class TableuTest {
         for (int i = 0; i < 7; i++) {
             Pile pila = new Pile();
             pila.add(new Carta(i+1, Carta.Palo.DIAMANTE));
-            columnas.add(new Columna(pila));
+            columnas.add(new ColumnaKlondike(pila));
         }
         Tableu tableu = new Tableu(columnas);
         ArrayList<Carta> cartas = new ArrayList<>();
@@ -52,7 +52,7 @@ public class TableuTest {
         for (int i = 0; i < 7; i++) {
             Pile pila = new Pile();
             pila.add(new Carta(i+1, Carta.Palo.DIAMANTE));
-            columnas.add(new Columna(pila));
+            columnas.add(new ColumnaKlondike(pila));
         }
         Tableu tableu = new Tableu(columnas);
         ArrayList<Carta> cartas = new ArrayList<>();
@@ -69,7 +69,7 @@ public class TableuTest {
         for (int i = 0; i < 7; i++) {
             Pile pila = new Pile();
             pila.add(new Carta(i+1, Carta.Palo.DIAMANTE));
-            columnas.add(new Columna(pila));
+            columnas.add(new ColumnaKlondike(pila));
         }
         Tableu tableu = new Tableu(columnas);
         ArrayList<Carta> cartas = new ArrayList<>();
@@ -86,7 +86,7 @@ public class TableuTest {
         for (int i = 0; i < 7; i++) {
             Pile pila = new Pile();
             pila.add(new Carta(i+1, Carta.Palo.DIAMANTE));
-            columnas.add(new Columna(pila));
+            columnas.add(new ColumnaKlondike(pila));
         }
         Tableu tableu = new Tableu(columnas);
         ArrayList<Carta> cartas = new ArrayList<>();
@@ -102,7 +102,7 @@ public class TableuTest {
         for (int i = 0; i < 7; i++) {
             Pile pila = new Pile();
             pila.add(new Carta(i+1, Carta.Palo.DIAMANTE));
-            columnas.add(new Columna(pila));
+            columnas.add(new ColumnaKlondike(pila));
         }
         Tableu tableu = new Tableu(columnas);
         ArrayList<Carta> cartas = new ArrayList<>();
@@ -118,7 +118,7 @@ public class TableuTest {
         for (int i = 0; i < 7; i++) {
             Pile pila = new Pile();
             pila.add(new Carta(i+1, Carta.Palo.DIAMANTE));
-            columnas.add(new Columna(pila));
+            columnas.add(new ColumnaKlondike(pila));
         }
         Tableu tableu = new Tableu(columnas);
         ArrayList<Carta> cartas = new ArrayList<>();
@@ -136,7 +136,7 @@ public class TableuTest {
         for (int i = 0; i < 7; i++) {
             Pile pila = new Pile();
             pila.add(new Carta(i+1, Carta.Palo.DIAMANTE));
-            columnas.add(new Columna(pila));
+            columnas.add(new ColumnaKlondike(pila));
         }
         Tableu tableu = new Tableu(columnas);
 
@@ -150,7 +150,7 @@ public class TableuTest {
         for (int i = 0; i < 7; i++) {
             Pile pila = new Pile();
             pila.add(new Carta(i+1, Carta.Palo.DIAMANTE));
-            columnas.add(new Columna(pila));
+            columnas.add(new ColumnaKlondike(pila));
         }
         Tableu tableu = new Tableu(columnas);
         Columna columnaSeleccionada = columnas.get(3);
@@ -166,7 +166,7 @@ public class TableuTest {
         for (int i = 0; i < 7; i++) {
             Pile pila = new Pile();
             pila.add(new Carta(i+1, Carta.Palo.DIAMANTE));
-            columnas.add(new Columna(pila));
+            columnas.add(new ColumnaKlondike(pila));
         }
         Tableu tableu = new Tableu(columnas);
         Columna columnaSeleccionada = columnas.get(6);
@@ -188,7 +188,7 @@ public class TableuTest {
         for (int i = 0; i < 7; i++) {
             Pile pila = new Pile();
             pila.add(new Carta(i+1, Carta.Palo.DIAMANTE));
-            columnas.add(new Columna(pila));
+            columnas.add(new ColumnaKlondike(pila));
         }
         Tableu tableu = new Tableu(columnas);
         Columna columnaSeleccionada = columnas.get(6);

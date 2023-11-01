@@ -1,6 +1,7 @@
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class JuegoKlondike extends Juego{
+public class JuegoKlondike extends Juego {
 
     public JuegoKlondike(int seed) {
         super(seed);
