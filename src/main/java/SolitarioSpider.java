@@ -74,7 +74,7 @@ public class SolitarioSpider implements Solitario{
 
     private ArrayList<Columna> crearColumnas() {
         var columnas = new ArrayList<Columna>();
-        int cantDeColumnas = 7;
+        int cantDeColumnas = 10;
         for (int i = 1; i <= cantDeColumnas; i++) {
             Pile monton = new Pile();
             for (int j = 0; j < i; j++) {

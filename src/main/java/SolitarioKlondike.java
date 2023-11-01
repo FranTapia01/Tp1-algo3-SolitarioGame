@@ -3,7 +3,7 @@ import java.util.Collections;
 import java.util.Random;
 
 public class SolitarioKlondike implements Solitario{
-    private final Tableu tableu;
+    private final TableuKlondike tableu;
     private final Foundation foundation;
     private final Pile stock;
     private final Pile waste;
@@ -12,10 +12,10 @@ public class SolitarioKlondike implements Solitario{
         this.stock = crearStock(seed);
         this.waste = new Pile();
         this.foundation = new Foundation(4);
-        this.tableu = new Tableu(crearColumnas());
+        this.tableu = new TableuKlondike(crearColumnas());
     }
 
-    public SolitarioKlondike(Pile stock, Pile waste, Foundation foundation, Tableu tableu) {
+    public SolitarioKlondike(Pile stock, Pile waste, Foundation foundation, TableuKlondike tableu) {
         this.stock = stock;
         this.waste = waste;
         this.foundation = foundation;
@@ -64,21 +64,21 @@ public class SolitarioKlondike implements Solitario{
 
     }
 
-    public boolean tableuToTableu(int numColumnaOrigen, int numColumnaDestino, int cantCartas) {
+    private boolean tableuToTableu(int numColumnaOrigen, int numColumnaDestino, int cantCartas) {
         ArrayList<Carta> cartas = this.tableu.obtenerCartasExpuestas(numColumnaOrigen, cantCartas);
         if (!(this.tableu.agregarCartas(numColumnaDestino, cartas))) {return false;}
         this.tableu.sacarCartas(numColumnaOrigen, cantCartas);
         return true;
     }
 
-    public boolean tableuToFoundation(int numColumna, int numFoundation) {
+    private boolean tableuToFoundation(int numColumna, int numFoundation) {
         ArrayList<Carta> cartas = this.tableu.obtenerCartasExpuestas(numColumna, 1);
         if (!(this.foundation.agregarCarta(cartas.get(0), numFoundation))) {return false;}
         this.tableu.sacarCartas(numColumna, 1);
         return true;
     }
 
-    public boolean foundationToFoundation(int numFoundationOrigen, int numFoundationDestino) {
+    private boolean foundationToFoundation(int numFoundationOrigen, int numFoundationDestino) {
         Carta carta = this.foundation.sacarCarta(numFoundationOrigen);
         if (!(this.foundation.agregarCarta(carta, numFoundationDestino))) {
             this.foundation.agregarCarta(carta, numFoundationOrigen);
@@ -87,7 +87,7 @@ public class SolitarioKlondike implements Solitario{
         return true;
     }
 
-    public boolean foundationToTableu(int numFoundation, int numColumna) {
+    private boolean foundationToTableu(int numFoundation, int numColumna) {
         ArrayList<Carta> carta = new ArrayList<>();
         carta.add(this.foundation.sacarCarta(numFoundation));
         if(!(this.tableu.agregarCartas(numColumna, carta))) {
@@ -97,7 +97,7 @@ public class SolitarioKlondike implements Solitario{
         return true;
     }
 
-    public boolean wasteToFoundation(int numFoundation) {
+    private boolean wasteToFoundation(int numFoundation) {
         if (!waste.isEmpty()) {
             Carta carta = waste.peek();
             if (!(this.foundation.agregarCarta(carta, numFoundation))) { return false;}
@@ -107,7 +107,7 @@ public class SolitarioKlondike implements Solitario{
         return false;
     }
 
-    public boolean wasteToTableu(int numColumna) {
+    private boolean wasteToTableu(int numColumna) {
         if (!waste.isEmpty()) {
             ArrayList<Carta> cartas = new ArrayList<>();
             cartas.add(waste.peek());
@@ -132,8 +132,8 @@ public class SolitarioKlondike implements Solitario{
         return stock;
     }
 
-    private ArrayList<Columna>crearColumnas() {
-        var columnas = new ArrayList<Columna>();
+    private ArrayList<ColumnaKlondike>crearColumnas() {
+        var columnas = new ArrayList<ColumnaKlondike>();
         int cantDeColumnas = 7;
         for (int i = 1; i <= cantDeColumnas; i++) {
             Pile monton = new Pile();

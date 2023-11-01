@@ -4,21 +4,19 @@ import java.util.ArrayList;
 
 import static org.junit.Assert.*;
 
-public class ColumnaTest {
-
+public class ColumnaKlondikeTest {
     @Test
     public void testAgregarValidoColumnaVacia() {
         var carta1 = new Carta(13, Carta.Palo.DIAMANTE);
         var cartas = new ArrayList<Carta>();
         var pile = new Pile();
-        Columna col = new ColumnaSpider(pile);
+        Columna col = new ColumnaKlondike(pile);
         cartas.add(carta1);
 
         col.agregarCartas(cartas);
 
         assertEquals(col.getCartasVisibles().size(), 1);
         assertEquals(col.getCartasVisibles().get(0), carta1);
-
     }
 
     @Test
@@ -26,7 +24,7 @@ public class ColumnaTest {
         var carta1 = new Carta(12, Carta.Palo.DIAMANTE);
         var cartas = new ArrayList<Carta>();
         var pile = new Pile();
-        Columna col = new ColumnaSpider(pile);
+        Columna col = new ColumnaKlondike(pile);
         cartas.add(carta1);
 
         col.agregarCartas(cartas);
@@ -44,7 +42,7 @@ public class ColumnaTest {
         pile.push(carta1);
         pile.push(carta2);
         cartas.add(carta3);
-        Columna col = new ColumnaSpider(pile);
+        Columna col = new ColumnaKlondike(pile);
 
         col.agregarCartas(cartas);
 
@@ -62,7 +60,7 @@ public class ColumnaTest {
         pile.push(carta1);
         pile.push(carta2);
         cartas.add(carta3);
-        Columna col = new ColumnaSpider(pile);
+        Columna col = new ColumnaKlondike(pile);
 
         col.agregarCartas(cartas);
 
@@ -81,7 +79,7 @@ public class ColumnaTest {
         pile.push(carta2);
         cartas.add(carta3);
         cartas.add(carta4);
-        Columna col = new ColumnaSpider(pile);
+        Columna col = new ColumnaKlondike(pile);
 
         col.agregarCartas(cartas);
 
@@ -103,7 +101,7 @@ public class ColumnaTest {
         pile.push(carta3);
         cartas.add(carta4);
         cartas.add(carta5);
-        Columna col = new ColumnaSpider(pile);
+        Columna col = new ColumnaKlondike(pile);
         col.agregarCartas(cartas);
 
         var cartasSacadas = col.sacarCartas(3);
@@ -115,6 +113,5 @@ public class ColumnaTest {
         assertEquals(cartasSacadas.get(1), carta4);
         assertEquals(cartasSacadas.get(2), carta5);
     }
-
 
 }

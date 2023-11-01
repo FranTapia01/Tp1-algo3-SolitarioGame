@@ -31,27 +31,28 @@ public abstract class Columna implements Serializable {
     }
 
     public ArrayList<Carta> sacarCartas(int cantidad) {
-        if(!cantidadValida(cantidad)) {
-            return new ArrayList<>();
+        if(cantidadValida(cantidad)) {
+            var aux = new ArrayList<Carta>();
+            for (int i = 0; i < cantidad; i++) {
+                aux.add(0, cartasVisibles.get(cartasVisibles.size()-1));
+                cartasVisibles.remove(cartasVisibles.size()-1);
+            }
+            reponerCartasVisibles();
+            return aux;
         }
-        var aux = new ArrayList<Carta>();
-        for (int i = 0; i < cantidad; i++) {
-            aux.add(0, cartasVisibles.get(cartasVisibles.size()-1));
-            cartasVisibles.remove(cartasVisibles.size()-1);
-        }
-        reponerCartasVisibles();
-        return aux;
+        return new ArrayList<>();
+
     }
 
     public ArrayList<Carta> obtenerCartas(int cantidad) {
-        if(!cantidadValida(cantidad)) {
-            throw new RuntimeException("No se puede sacar esa cantidad de cartas");
+        if(cantidadValida(cantidad)) {
+            var aux = new ArrayList<Carta>();
+            for (int i = 1; i <= cantidad; i++) {
+                aux.add(0, cartasVisibles.get(cartasVisibles.size()-i));
+            }
+            return aux;
         }
-        var aux = new ArrayList<Carta>();
-        for (int i = 1; i <= cantidad; i++) {
-            aux.add(0, cartasVisibles.get(cartasVisibles.size()-i));
-        }
-        return aux;
+        throw new RuntimeException("No se puede sacar esa cantidad de cartas");
     }
 
     public ArrayList<Carta> getCartasVisibles() {

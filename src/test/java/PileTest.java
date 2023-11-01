@@ -5,7 +5,7 @@ import static org.junit.Assert.*;
 public class PileTest {
 
     @Test
-    public void testCabtidadCartasAgregadas() {
+    public void testCantidadCartasAgregadas() {
         var carta1 = new Carta(9, Carta.Palo.DIAMANTE);
         var carta2 = new Carta(13, Carta.Palo.PICA);
         var pile = new Pile();

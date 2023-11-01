@@ -32,7 +32,7 @@ public class ColumnaSpider extends Columna{
         int cantidadCartasCompleto = 13;
         if (tamanio < cantidadCartasCompleto) return false;
 
-        var paloSeleccionado = cartasVisibles.get(cantidadCartasCompleto).getPalo();
+        var paloSeleccionado = cartasVisibles.get(cantidadCartasCompleto-1).getPalo();
 
         for (int i = 1; i <= cantidadCartasCompleto; i++) {
             Carta carta = cartasVisibles.get(cantidadCartasCompleto - i);
