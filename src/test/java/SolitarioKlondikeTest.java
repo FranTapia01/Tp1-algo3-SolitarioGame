@@ -74,16 +74,12 @@ public class SolitarioKlondikeTest {
 
     @Test
     public void testIniciarJuegoEstadoParticular() {
-        var carta = new Carta(2, Carta.Palo.TREBOL);
-        var columnas = new ArrayList<ColumnaKlondike>();
         var stock = new Pile();
-        stock.push(carta);
         var waste = new Pile();
         var foundation = new Foundation(4);
-        var tableu = new TableuKlondike(columnas);
+        var tableu = new TableuKlondike(new ArrayList<>());
 
         var solitario = new SolitarioKlondike(stock, waste, foundation, tableu);
-
     }
 
     @Test

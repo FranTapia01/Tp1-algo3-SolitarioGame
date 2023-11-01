@@ -9,7 +9,8 @@ public class SolitarioSpider implements Solitario{
 
     public SolitarioSpider(int seed){
         this.stock = crearStock(seed);
-        this.foundation = new Foundation(8);
+        int tamanioFoundation = 8;
+        this.foundation = new Foundation(tamanioFoundation);
         this.tableu = new TableuSpider(crearColumnas());
     }
 
@@ -41,7 +42,7 @@ public class SolitarioSpider implements Solitario{
 
     public boolean tableuToTableu(int numColumnaOrigen, int numColumnaDestino, int cantCartas) {
         ArrayList<Carta> cartas = this.tableu.obtenerCartasExpuestas(numColumnaOrigen, cantCartas);
-        if (!(this.tableu.agregarCartas(numColumnaDestino, cartas))) {return false;}
+        if (cartas.isEmpty() || !(this.tableu.agregarCartas(numColumnaDestino, cartas))) {return false;}
         this.tableu.sacarCartas(numColumnaOrigen, cantCartas);
         columnaCompletaToFoundation(numColumnaDestino);
         return true;
@@ -81,22 +82,16 @@ public class SolitarioSpider implements Solitario{
 
     private void columnaCompletaToFoundation(int posColumna) {
         var cartas = tableu.hayColumnaCompleta(posColumna);
-        var numFoundation = 0;
-        boolean numFoundationValido = false;
+        if (!cartas.isEmpty()) {
+            var numFoundation = 1;
+            boolean numFoundationValido = false;
 
-        while (!numFoundationValido) {
-            for (int i = 0; i < 13; i++) {
-                numFoundationValido = foundation.agregarCarta(cartas.get(i), numFoundation);
+            while (!numFoundationValido) {
+                for (int i = 0; i < 13; i++) {
+                    numFoundationValido = foundation.agregarCarta(cartas.get(i), numFoundation);
+                }
+                numFoundation++;
             }
-            numFoundation++;
         }
-    }
-
-    public TableuSpider getTableu() {
-        return tableu;
-    }
-
-    public Pile getStock() {
-        return stock;
     }
 }

@@ -11,7 +11,8 @@ public class SolitarioKlondike implements Solitario{
     public SolitarioKlondike(int seed){
         this.stock = crearStock(seed);
         this.waste = new Pile();
-        this.foundation = new Foundation(4);
+        int tamanioFoundation = 4;
+        this.foundation = new Foundation(tamanioFoundation);
         this.tableu = new TableuKlondike(crearColumnas());
     }
 
@@ -31,7 +32,6 @@ public class SolitarioKlondike implements Solitario{
             case FOUNDATIONTOTABLEU -> foundationToTableu(posOrigen, posDestino);
             case WASTETOFOUNDATION -> wasteToFoundation(posDestino);
             case WASTETOTABLEU -> wasteToTableu(posDestino);
-            default -> false;
         };
     }
 

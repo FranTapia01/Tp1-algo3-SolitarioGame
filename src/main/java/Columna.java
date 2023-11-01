@@ -52,7 +52,7 @@ public abstract class Columna implements Serializable {
             }
             return aux;
         }
-        throw new RuntimeException("No se puede sacar esa cantidad de cartas");
+        return new ArrayList<>();
     }
 
     public ArrayList<Carta> getCartasVisibles() {

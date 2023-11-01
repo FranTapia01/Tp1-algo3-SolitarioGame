@@ -1,5 +1,7 @@
 import org.junit.Test;
 
+import java.util.ArrayList;
+
 import static org.junit.Assert.*;
 
 public class SolitarioSpiderTest {
@@ -16,26 +18,60 @@ public class SolitarioSpiderTest {
 
 
     @Test
-    public void testRepartirCartasCorrectamente() {
+    public void testRepartirCartas() {
         var solitario = new SolitarioSpider(seed);
 
         assertTrue(solitario.pedirCarta());
-
     }
 
     @Test
-    public void test() {
+    public void testMoverCartaValida() {
         var solitario = new SolitarioSpider(seed);
 
+        boolean movimiento1 = solitario.moverCarta(Solitario.Movimiento.TABLEUTOTABLEU, 2, 6, 1);
+        boolean movimiento2 = solitario.moverCarta(Solitario.Movimiento.TABLEUTOTABLEU, 3, 6, 1);
 
-        for (int i = 1; i < 11; i++) {
-            var carta = solitario.getTableu().obtenerCartasExpuestas(i, 1);
-            System.out.println(carta.get(0).getNumero());
-            System.out.println(carta.get(0).getPalo());
+        assertTrue(movimiento1);
+        assertTrue(movimiento2);
+    }
 
-        }
+    @Test
+    public void testMoverMasDeUnaCarta() {
+        var solitario = new SolitarioSpider(seed);
+        solitario.moverCarta(Solitario.Movimiento.TABLEUTOTABLEU, 2, 6, 1);
+        solitario.pedirCarta();
+        solitario.moverCarta(Solitario.Movimiento.TABLEUTOTABLEU, 6, 7, 1);
 
+        boolean movimiento1 = solitario.moverCarta(Solitario.Movimiento.TABLEUTOTABLEU, 6, 2, 2);
+        boolean movimiento2 = solitario.moverCarta(Solitario.Movimiento.TABLEUTOTABLEU, 6, 1, 2);
 
+        assertFalse(movimiento1);
+        assertTrue(movimiento2);
+    }
 
+    @Test
+    public void testSePidenTodasLasCartas() {
+        var solitario = new SolitarioSpider(seed);
+        for (int i = 0; i < 5; i++) solitario.pedirCarta();
+
+        assertFalse(solitario.pedirCarta());
+    }
+
+    @Test
+    public void testMovimientoInexistente() {
+        var solitario = new SolitarioSpider(seed);
+
+        var movimiento = solitario.moverCarta(Solitario.Movimiento.TABLEUTOFOUNDATION, 1, 1, 1);
+
+        assertFalse(movimiento);
+    }
+
+    @Test
+    public void testIniciarJuegoEstadoParticular() {
+        var stock = new Pile();
+        var foundation = new Foundation(4);
+        var tableu = new TableuSpider(new ArrayList<>());
+
+        var solitario = new SolitarioSpider(stock, foundation, tableu);
     }
 }
