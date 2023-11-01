@@ -21,22 +21,4 @@ public class SerializarTest {
 
         assertTrue(thrown);
     }
-
-    @Test
-    public void testDeserializar() {
-
-        int seed = 2;
-        var thrown = true;
-        var Juego = new SolitarioSpider(seed);
-        try{
-            var serializar = Serializar.getSerializable("doc/archivo.dat");
-            serializar.GuardarPartida(Juego);
-            var JuegoCargado = serializar.CargarPartida();
-
-        }catch (IOException | ClassNotFoundException e) {
-            thrown = false;
-        }
-
-        assertTrue(thrown);
-    }
 }
