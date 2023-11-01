@@ -3,7 +3,7 @@ import java.util.Collections;
 import java.util.Random;
 
 public class SolitarioSpider implements Solitario{
-    private final Tableu tableu;
+    private final TableuSpider tableu;
     private final Foundation foundation;
     private final Pile stock;
 
@@ -11,10 +11,10 @@ public class SolitarioSpider implements Solitario{
     public SolitarioSpider(int seed){
         this.stock = crearStock(seed);
         this.foundation = new Foundation(8);
-        this.tableu = new Tableu(crearColumnas());
+        this.tableu = new TableuSpider(crearColumnas());
     }
 
-    public SolitarioSpider(Pile stock, Foundation foundation, Tableu tableu) {
+    public SolitarioSpider(Pile stock, Foundation foundation, TableuSpider tableu) {
         this.stock = stock;
         this.foundation = foundation;
         this.tableu = tableu;
@@ -52,6 +52,7 @@ public class SolitarioSpider implements Solitario{
         ArrayList<Carta> cartas = this.tableu.obtenerCartasExpuestas(numColumnaOrigen, cantCartas);
         if (!(this.tableu.agregarCartas(numColumnaDestino, cartas))) {return false;}
         this.tableu.sacarCartas(numColumnaOrigen, cantCartas);
+        columnaCompletaToFoundation(numColumnaDestino);
         return true;
     }
 
@@ -72,8 +73,8 @@ public class SolitarioSpider implements Solitario{
         return stock;
     }
 
-    private ArrayList<Columna> crearColumnas() {
-        var columnas = new ArrayList<Columna>();
+    private ArrayList<ColumnaSpider> crearColumnas() {
+        var columnas = new ArrayList<ColumnaSpider>();
         int cantDeColumnas = 10;
         for (int i = 1; i <= cantDeColumnas; i++) {
             Pile monton = new Pile();
@@ -84,5 +85,18 @@ public class SolitarioSpider implements Solitario{
             columnas.add(columna);
         }
         return columnas;
+    }
+
+    private void columnaCompletaToFoundation(int posColumna) {
+        var cartas = tableu.DevolverColumnaCompleta(posColumna);
+        var numFoundation = 0;
+        boolean numFoundationValido = false;
+
+        while (!numFoundationValido) {
+            for (int i = 0; i < 13; i++) {
+                numFoundationValido = foundation.agregarCarta(cartas.get(i), numFoundation);
+            }
+            numFoundation++;
+        }
     }
 }
