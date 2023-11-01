@@ -9,4 +9,15 @@ public class TableuSpider extends Tableu<ColumnaSpider>{
         return columnaSeleccionada.sacarColumnaCompletada();
     }
 
+    public boolean repartirCartas(ArrayList<Carta> cartas) {
+        var tamanioTableu = tableuColumnas.size();
+        if (cartas.size() != tamanioTableu) {
+            return false;
+        }
+        for (int i = 0; i < tamanioTableu; i++) {
+            ColumnaSpider columnaSeleccionada = tableuColumnas.get(i);
+            columnaSeleccionada.agregarCartaSinValidar(cartas.get(i));
+        }
+        return true;
+    }
 }

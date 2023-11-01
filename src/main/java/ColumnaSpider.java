@@ -45,4 +45,8 @@ public class ColumnaSpider extends Columna{
         if (!columnaCompleta()) {return new ArrayList<>();}
         return sacarCartas(13);
     }
+
+    public void agregarCartaSinValidar(Carta carta) {
+        cartasVisibles.add(carta);
+    }
 }

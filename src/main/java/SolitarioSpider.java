@@ -7,7 +7,6 @@ public class SolitarioSpider implements Solitario{
     private final Foundation foundation;
     private final Pile stock;
 
-
     public SolitarioSpider(int seed){
         this.stock = crearStock(seed);
         this.foundation = new Foundation(8);
@@ -20,8 +19,6 @@ public class SolitarioSpider implements Solitario{
         this.tableu = tableu;
     }
 
-
-
     @Override
     public boolean moverCarta(Movimiento movimiento, int posOrigen, int posDestino, int cantCartas) {
         return tableuToTableu(posOrigen, posDestino, cantCartas);
@@ -29,14 +26,18 @@ public class SolitarioSpider implements Solitario{
 
     @Override
     public boolean pedirCarta() {
-        return false;
+        if (stock.isEmpty()) {
+            return false;
+        }
+        var cartas = new ArrayList<Carta>();
+        for (int i = 0; i < 10; i++) cartas.add(stock.pop());
+        return tableu.repartirCartas(cartas);
     }
 
     @Override
     public boolean juegoGanado() {
         return this.foundation.estaCompleta();
     }
-
 
     public boolean tableuToTableu(int numColumnaOrigen, int numColumnaDestino, int cantCartas) {
         ArrayList<Carta> cartas = this.tableu.obtenerCartasExpuestas(numColumnaOrigen, cantCartas);
@@ -45,7 +46,6 @@ public class SolitarioSpider implements Solitario{
         columnaCompletaToFoundation(numColumnaDestino);
         return true;
     }
-
 
     private Pile crearStock(int seed){
         int cantCartasDeUnPalo = 13;
@@ -66,9 +66,11 @@ public class SolitarioSpider implements Solitario{
     private ArrayList<ColumnaSpider> crearColumnas() {
         var columnas = new ArrayList<ColumnaSpider>();
         int cantDeColumnas = 10;
+        int cantAAgregar = 6;
         for (int i = 1; i <= cantDeColumnas; i++) {
             Pile monton = new Pile();
-            for (int j = 0; j < i; j++) {
+            if (i > 4) cantAAgregar = 5;
+            for (int j = 0; j < cantAAgregar; j++) {
                 monton.add(stock.pop());
             }
             var columna = new ColumnaSpider(monton);
@@ -88,5 +90,13 @@ public class SolitarioSpider implements Solitario{
             }
             numFoundation++;
         }
+    }
+
+    public TableuSpider getTableu() {
+        return tableu;
+    }
+
+    public Pile getStock() {
+        return stock;
     }
 }
