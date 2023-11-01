@@ -54,15 +54,6 @@ public class SolitarioKlondike implements Solitario{
         return this.foundation.estaCompleta();
     }
 
-    @Override
-    public void guardarJuego() {
-
-    }
-
-    @Override
-    public void cargarJuego() {
-
-    }
 
     private boolean tableuToTableu(int numColumnaOrigen, int numColumnaDestino, int cantCartas) {
         ArrayList<Carta> cartas = this.tableu.obtenerCartasExpuestas(numColumnaOrigen, cantCartas);

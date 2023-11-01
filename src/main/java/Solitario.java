@@ -1,4 +1,6 @@
-public interface Solitario {
+import java.io.Serializable;
+
+public interface Solitario extends Serializable {
     enum Movimiento{
         TABLEUTOTABLEU,
         TABLEUTOFOUNDATION,
@@ -13,7 +15,4 @@ public interface Solitario {
 
     boolean juegoGanado();
 
-    void guardarJuego();
-
-    void cargarJuego();
 }

@@ -2,7 +2,7 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 import java.util.ArrayList;
 
-public class TableuTest {
+public class TableuKlondikeTest {
     //tests de agregarCarta
     @Test
     public void testAgregarColumnaInvalida() {

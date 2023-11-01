@@ -37,16 +37,6 @@ public class SolitarioSpider implements Solitario{
         return this.foundation.estaCompleta();
     }
 
-    @Override
-    public void guardarJuego() {
-
-    }
-
-    @Override
-    public void cargarJuego() {
-
-    }
-
 
     public boolean tableuToTableu(int numColumnaOrigen, int numColumnaDestino, int cantCartas) {
         ArrayList<Carta> cartas = this.tableu.obtenerCartasExpuestas(numColumnaOrigen, cantCartas);
@@ -88,7 +78,7 @@ public class SolitarioSpider implements Solitario{
     }
 
     private void columnaCompletaToFoundation(int posColumna) {
-        var cartas = tableu.DevolverColumnaCompleta(posColumna);
+        var cartas = tableu.hayColumnaCompleta(posColumna);
         var numFoundation = 0;
         boolean numFoundationValido = false;
 

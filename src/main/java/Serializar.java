@@ -1,8 +1,8 @@
 import java.io.*;
 
-public class Guardado {
-    private static Guardado guardado;
-    private Guardado( String name) throws IOException {
+public class Serializar {
+    private static Serializar guardado;
+    private Serializar( String name) throws IOException {
         write = new FileOutputStream( name );
         read = new FileInputStream( name );
     };
@@ -10,9 +10,9 @@ public class Guardado {
     private final FileOutputStream write;
     private final FileInputStream read;
 
-    public static Guardado getGuardado(String name) throws IOException {
+    public static Serializar getSerializable(String name) throws IOException {
         if (guardado == null){
-            guardado = new Guardado(name);
+            guardado = new Serializar(name);
         }
         return guardado;
     }
