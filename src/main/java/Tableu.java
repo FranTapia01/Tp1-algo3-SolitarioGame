@@ -17,7 +17,7 @@ public class Tableu<T extends Columna> implements Serializable {
             return false;
         }
         int posColumna = numColumna - 1;
-        Columna columnaSeleccionada = tableuColumnas.get(posColumna);
+        var columnaSeleccionada = tableuColumnas.get(posColumna);
         return columnaSeleccionada.agregarCartas(cartas);
     }
 
@@ -26,7 +26,7 @@ public class Tableu<T extends Columna> implements Serializable {
             return new ArrayList<>();
         }
         int posColumna = numColumna - 1;
-        Columna columnaSeleccionada = tableuColumnas.get(posColumna);
+        var columnaSeleccionada = tableuColumnas.get(posColumna);
         return columnaSeleccionada.sacarCartas(cantCartas);
     }
 
@@ -35,7 +35,7 @@ public class Tableu<T extends Columna> implements Serializable {
             return new ArrayList<>();
         }
         int posColumna = numColumna - 1;
-        Columna columnaSeleccionada = tableuColumnas.get(posColumna);
+        var columnaSeleccionada = tableuColumnas.get(posColumna);
         return columnaSeleccionada.obtenerCartas(cantCartas);
     }
 }

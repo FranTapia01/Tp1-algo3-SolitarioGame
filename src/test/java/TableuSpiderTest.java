@@ -5,8 +5,6 @@ import java.util.ArrayList;
 import static org.junit.Assert.*;
 
 public class TableuSpiderTest {
-
-
     @Test
     public void testEsperoListaVaciaAlPedirColumnaCompleta() {
         var columnas = new ArrayList<ColumnaSpider>();
