@@ -2,8 +2,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Random;
 
-public abstract class Solitario {
-    protected Tableu<Columna> tableu;
+public abstract class Solitario<T extends Columna> {
+    protected Tableu<T> tableu;
     protected Foundation foundation;
     protected Pile stock;
 

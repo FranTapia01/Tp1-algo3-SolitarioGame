@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Random;
 
-public class SolitarioSpider extends Solitario {
+public class SolitarioSpider extends Solitario<ColumnaSpider> {
     protected TableuSpider tableu;
 
     public SolitarioSpider(int seed){
