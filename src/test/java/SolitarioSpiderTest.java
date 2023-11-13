@@ -59,15 +59,6 @@ public class SolitarioSpiderTest {
     }
 
     @Test
-    public void testMovimientoInexistente() {
-        var solitario = new SolitarioSpider(seed);
-
-        var movimiento = solitario.tableuToFoundation(1, 1);
-
-        assertFalse(movimiento);
-    }
-
-    @Test
     public void testIniciarJuegoEstadoParticular() {
         var stock = new Pile();
         var foundation = new Foundation(4);

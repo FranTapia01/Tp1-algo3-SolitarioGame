@@ -14,10 +14,8 @@ public class SolitarioKlondike extends Solitario<ColumnaKlondike> {
     }
 
     public SolitarioKlondike(Pile stock, Pile waste, Foundation foundation, TableuKlondike tableu) {
-        this.stock = stock;
+        super(stock, foundation, tableu);
         this.waste = waste;
-        this.foundation = foundation;
-        this.tableu = tableu;
     }
 
     @Override
@@ -31,6 +29,32 @@ public class SolitarioKlondike extends Solitario<ColumnaKlondike> {
             }
         }
         this.waste.push(this.stock.pop());
+        return true;
+    }
+
+    public boolean tableuToFoundation(int numColumna, int numFoundation) {
+        ArrayList<Carta> cartas = this.tableu.obtenerCartasExpuestas(numColumna, 1);
+        if (!(this.foundation.agregarCarta(cartas.get(0), numFoundation))) {return false;}
+        this.tableu.sacarCartas(numColumna, 1);
+        return true;
+    }
+
+    public boolean foundationToFoundation(int numFoundationOrigen, int numFoundationDestino) {
+        Carta carta = this.foundation.sacarCarta(numFoundationOrigen);
+        if (!(this.foundation.agregarCarta(carta, numFoundationDestino))) {
+            this.foundation.agregarCarta(carta, numFoundationOrigen);
+            return false;
+        }
+        return true;
+    }
+
+    public boolean foundationToTableu(int numFoundation, int numColumna) {
+        ArrayList<Carta> carta = new ArrayList<>();
+        carta.add(this.foundation.sacarCarta(numFoundation));
+        if(!(this.tableu.agregarCartas(numColumna, carta))) {
+            this.foundation.agregarCarta(carta.get(0), numFoundation);
+            return false;
+        }
         return true;
     }
 

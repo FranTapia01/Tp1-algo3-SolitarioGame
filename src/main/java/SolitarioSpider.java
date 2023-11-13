@@ -12,9 +12,7 @@ public class SolitarioSpider extends Solitario<ColumnaSpider> {
     }
 
     public SolitarioSpider(Pile stock, Foundation foundation, TableuSpider tableu) {
-        this.stock = stock;
-        this.foundation = foundation;
-        this.tableu = tableu;
+        super(stock, foundation, tableu);
     }
 
     @Override
@@ -23,8 +21,9 @@ public class SolitarioSpider extends Solitario<ColumnaSpider> {
             return false;
         }
         var cartas = new ArrayList<Carta>();
-        for (int i = 0; i < 10; i++) cartas.add(stock.pop());
-        return tableu.repartirCartas(cartas);
+        var cantColumnas = 10;
+        for (int i = 0; i < cantColumnas; i++) cartas.add(stock.pop());
+        return ((TableuSpider) this.tableu).repartirCartas(cartas);
     }
 
     private ArrayList<ColumnaSpider> crearColumnas() {
@@ -44,7 +43,7 @@ public class SolitarioSpider extends Solitario<ColumnaSpider> {
     }
 
     private void columnaCompletaToFoundation(int posColumna) {
-        var cartas = tableu.hayColumnaCompleta(posColumna);
+        var cartas = ((TableuSpider) this.tableu).hayColumnaCompleta(posColumna);
         if (!cartas.isEmpty()) {
             var numFoundation = 1;
             boolean numFoundationValido = false;
