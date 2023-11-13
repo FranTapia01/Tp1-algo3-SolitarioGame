@@ -3,8 +3,6 @@ import java.util.Collections;
 import java.util.Random;
 
 public class SolitarioSpider extends Solitario<ColumnaSpider> {
-    protected TableuSpider tableu;
-
     public SolitarioSpider(int seed){
         int cantBarajas = 2;
         this.stock = crearStock(seed, cantBarajas);

@@ -7,7 +7,6 @@ public abstract class Solitario<T extends Columna> {
     protected Foundation foundation;
     protected Pile stock;
 
-
     abstract boolean pedirCarta();
 
     public boolean juegoGanado() {

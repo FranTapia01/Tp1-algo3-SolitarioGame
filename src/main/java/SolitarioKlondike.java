@@ -2,7 +2,6 @@ import java.util.ArrayList;
 
 
 public class SolitarioKlondike extends Solitario<ColumnaKlondike> {
-    private final TableuKlondike tableu;
     private final Pile waste;
 
     public SolitarioKlondike(int seed){
