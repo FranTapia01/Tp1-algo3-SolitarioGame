@@ -1,5 +1,6 @@
 import org.junit.Test;
 
+import java.io.*;
 import java.util.ArrayList;
 
 import static org.junit.Assert.*;
@@ -88,5 +89,31 @@ public class SolitarioKlondikeTest {
         for (int i = 0; i < 24; i++) solitario.pedirCarta();
 
         assertTrue(solitario.pedirCarta());
+    }
+
+    @Test
+    public void testSerializar() throws IOException {
+        var solitario = new SolitarioKlondike(seed);
+        var file = new FileOutputStream("doc/archivo.dat");
+        var output = new ObjectOutputStream(file);
+
+        solitario.serializar(output);
+    }
+
+    @Test
+    public void testDeserializar() throws IOException {
+        var solitario = new SolitarioKlondike(seed);
+        var file = new FileOutputStream("doc/archivo.dat");
+        var output = new ObjectOutputStream(file);
+        solitario.serializar(output);
+
+        var file2 = new FileInputStream("doc/archivo.dat");
+        var input = new ObjectInputStream(file2);
+        try {
+            var KLondike = SolitarioKlondike.deserializar(input);
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+
     }
 }

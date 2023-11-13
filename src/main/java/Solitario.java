@@ -1,8 +1,12 @@
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Random;
 
-public abstract class Solitario<T extends Columna> {
+public abstract class Solitario<T extends Columna> implements Serializable{
     protected Tableu<T> tableu;
     protected Foundation foundation;
     protected Pile stock;
@@ -43,5 +47,16 @@ public abstract class Solitario<T extends Columna> {
         var rnd = new Random(seed);
         Collections.shuffle(stock, rnd);
         return stock;
+    }
+
+    public void serializar(ObjectOutputStream output) throws IOException {
+        output.writeObject(this);
+        output.close();
+    }
+
+    public static Object deserializar(ObjectInputStream input) throws IOException, ClassNotFoundException {
+        Solitario object = (Solitario) input.readObject();
+        input.close();
+        return object;
     }
 }
