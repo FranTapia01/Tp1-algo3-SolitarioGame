@@ -7,7 +7,9 @@ public class ColumnaSpider extends Columna{
     }
 
     @Override
-    protected boolean cartaValida(Carta cartaApoyada, Carta cartaRecibida) {
+    protected boolean cartaValida(Carta cartaRecibida) {
+        if (cartasVisibles.isEmpty()) return true;
+        var cartaApoyada = cartasVisibles.get(cartasVisibles.size()-1);
         int unNumeroMenos = -1;
         return cartaApoyada.getNumero() + unNumeroMenos == cartaRecibida.getNumero();
     }

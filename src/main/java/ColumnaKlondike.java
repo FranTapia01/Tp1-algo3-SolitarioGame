@@ -14,7 +14,11 @@ public class ColumnaKlondike extends Columna{
     }
 
     @Override
-    protected boolean cartaValida(Carta cartaApoyada, Carta cartaRecibida) {
+    protected boolean cartaValida(Carta cartaRecibida) {
+        if (cartasVisibles.isEmpty()) {
+            return cartaRecibida.getNumero() == 13;
+        }
+        var cartaApoyada = cartasVisibles.get(cartasVisibles.size()-1);
         int unNumeroMenos = -1;
         if (!paloContrario(cartaApoyada, cartaRecibida)){
             return false;

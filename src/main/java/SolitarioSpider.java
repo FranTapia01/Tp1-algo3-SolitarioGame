@@ -1,6 +1,4 @@
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Random;
 
 public class SolitarioSpider extends Solitario<ColumnaSpider> {
     public SolitarioSpider(int seed){
@@ -24,6 +22,14 @@ public class SolitarioSpider extends Solitario<ColumnaSpider> {
         var cantColumnas = 10;
         for (int i = 0; i < cantColumnas; i++) cartas.add(stock.pop());
         return ((TableuSpider) this.tableu).repartirCartas(cartas);
+    }
+
+    public boolean tableuToTableu(int numColumnaOrigen, int numColumnaDestino, int cantCartas) {
+        boolean movimientoValido = super.tableuToTableu(numColumnaOrigen, numColumnaDestino, cantCartas);
+        if (movimientoValido) {
+            columnaCompletaToFoundation(numColumnaDestino);
+        }
+        return movimientoValido;
     }
 
     private ArrayList<ColumnaSpider> crearColumnas() {

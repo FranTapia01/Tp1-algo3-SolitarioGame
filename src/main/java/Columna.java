@@ -15,15 +15,7 @@ public abstract class Columna implements Serializable {
         if (cartas.isEmpty()) {
             return true;
         }
-        if (cartasVisibles.isEmpty()) {
-            if (cartas.get(0).getNumero() == 13) {
-                cartasVisibles.addAll(cartas);
-                return true;
-            }
-            return false;
-        }
-        Carta cartaApoyada = (cartasVisibles.get(cartasVisibles.size()-1));
-        if (cartaValida(cartaApoyada, cartas.get(0))) {
+        if (cartaValida(cartas.get(0))) {
             cartasVisibles.addAll(cartas);
             return true;
         }
@@ -69,7 +61,7 @@ public abstract class Columna implements Serializable {
         return cartasNoVisibles.size();
     }
 
-    abstract boolean cartaValida(Carta cartaApoyada,Carta cartaRecibida);
+    abstract boolean cartaValida(Carta cartaRecibida);
 
     abstract boolean cantidadValida(int cant);
 }
