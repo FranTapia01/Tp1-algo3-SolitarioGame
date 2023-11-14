@@ -3,62 +3,62 @@ import static org.junit.Assert.*;
 import java.util.ArrayList;
 
 public class TableuKlondikeTest {
-    /*
+    
     //tests de agregarCarta
     @Test
     public void testAgregarColumnaInvalida() {
-        ArrayList<Columna> columnas = new ArrayList<>();
+        ArrayList<ColumnaKlondike> columnas = new ArrayList<>();
         for (int i = 0; i < 7; i++) {
             Pile pila = new Pile();
             pila.add(new Carta(i+1, Carta.Palo.DIAMANTE));
             columnas.add(new ColumnaKlondike(pila));
         }
-        Tableu tableu = new Tableu(columnas);
+        var tableu = new TableuKlondike(columnas);
         assertFalse(tableu.agregarCartas(8, new ArrayList<>()));
     }
     @Test
     public void testAgregarUna() {
-        ArrayList<Columna> columnas = new ArrayList<>();
+        ArrayList<ColumnaKlondike> columnas = new ArrayList<>();
         for (int i = 0; i < 7; i++) {
             Pile pila = new Pile();
             pila.add(new Carta(i+1, Carta.Palo.DIAMANTE));
             columnas.add(new ColumnaKlondike(pila));
         }
-        Tableu tableu = new Tableu(columnas);
+        var tableu = new TableuKlondike(columnas);
         ArrayList<Carta> cartas = new ArrayList<>();
         cartas.add(new Carta(4, Carta.Palo.PICA));
-        Columna columnaSeleccionada = columnas.get(4);
+        ColumnaKlondike columnaSeleccionada = columnas.get(4);
 
         assertTrue(tableu.agregarCartas(5, cartas));
         assertEquals((columnaSeleccionada.getCartasVisibles()).size(), 2);
     }
     @Test
     public void testAgregarNinguna() {
-        ArrayList<Columna> columnas = new ArrayList<>();
+        ArrayList<ColumnaKlondike> columnas = new ArrayList<>();
         for (int i = 0; i < 7; i++) {
             Pile pila = new Pile();
             pila.add(new Carta(i+1, Carta.Palo.DIAMANTE));
             columnas.add(new ColumnaKlondike(pila));
         }
-        Tableu tableu = new Tableu(columnas);
+        var tableu = new TableuKlondike(columnas);
         ArrayList<Carta> cartas = new ArrayList<>();
-        Columna columnaSeleccionada = columnas.get(4);
+        ColumnaKlondike columnaSeleccionada = columnas.get(4);
 
         assertTrue(tableu.agregarCartas(5, cartas));
         assertEquals((columnaSeleccionada.getCartasVisibles()).size(), 1);
     }
     @Test
     public void testAgregarValidoColumnaVacia() {
-        ArrayList<Columna> columnas = new ArrayList<>();
+        ArrayList<ColumnaKlondike> columnas = new ArrayList<>();
         for (int i = 0; i < 7; i++) {
             Pile pila = new Pile();
             pila.add(new Carta(i+1, Carta.Palo.DIAMANTE));
             columnas.add(new ColumnaKlondike(pila));
         }
-        Tableu tableu = new Tableu(columnas);
+        var tableu = new TableuKlondike(columnas);
         ArrayList<Carta> cartas = new ArrayList<>();
         cartas.add(new Carta(13, Carta.Palo.PICA));
-        Columna columnaSeleccionada = columnas.get(4);
+        ColumnaKlondike columnaSeleccionada = columnas.get(4);
         columnaSeleccionada.sacarCartas(1);
 
         assertTrue(tableu.agregarCartas(5, cartas));
@@ -66,16 +66,16 @@ public class TableuKlondikeTest {
     }
     @Test
     public void testAgregarInvalidoColumnaVacia() {
-        ArrayList<Columna> columnas = new ArrayList<>();
+        ArrayList<ColumnaKlondike> columnas = new ArrayList<>();
         for (int i = 0; i < 7; i++) {
             Pile pila = new Pile();
             pila.add(new Carta(i+1, Carta.Palo.DIAMANTE));
             columnas.add(new ColumnaKlondike(pila));
         }
-        Tableu tableu = new Tableu(columnas);
+        TableuKlondike tableu = new TableuKlondike(columnas);
         ArrayList<Carta> cartas = new ArrayList<>();
         cartas.add(new Carta(12, Carta.Palo.PICA));
-        Columna columnaSeleccionada = columnas.get(4);
+        ColumnaKlondike columnaSeleccionada = columnas.get(4);
         columnaSeleccionada.sacarCartas(1);
 
         assertFalse(tableu.agregarCartas(5, cartas));
@@ -83,49 +83,49 @@ public class TableuKlondikeTest {
     }
     @Test
     public void testAgregarPaloInvalido() {
-        ArrayList<Columna> columnas = new ArrayList<>();
+        ArrayList<ColumnaKlondike> columnas = new ArrayList<>();
         for (int i = 0; i < 7; i++) {
             Pile pila = new Pile();
             pila.add(new Carta(i+1, Carta.Palo.DIAMANTE));
             columnas.add(new ColumnaKlondike(pila));
         }
-        Tableu tableu = new Tableu(columnas);
+        var tableu = new TableuKlondike(columnas);
         ArrayList<Carta> cartas = new ArrayList<>();
         cartas.add(new Carta(4, Carta.Palo.CORAZON));
-        Columna columnaSeleccionada = columnas.get(4);
+        ColumnaKlondike columnaSeleccionada = columnas.get(4);
 
         assertFalse(tableu.agregarCartas(5, cartas));
         assertEquals((columnaSeleccionada.getCartasVisibles()).size(), 1);
     }
     @Test
     public void testAgregarNumeroInvalido() {
-        ArrayList<Columna> columnas = new ArrayList<>();
+        ArrayList<ColumnaKlondike> columnas = new ArrayList<>();
         for (int i = 0; i < 7; i++) {
             Pile pila = new Pile();
             pila.add(new Carta(i+1, Carta.Palo.DIAMANTE));
             columnas.add(new ColumnaKlondike(pila));
         }
-        Tableu tableu = new Tableu(columnas);
+        var tableu = new TableuKlondike(columnas);
         ArrayList<Carta> cartas = new ArrayList<>();
         cartas.add(new Carta(6, Carta.Palo.PICA));
-        Columna columnaSeleccionada = columnas.get(4);
+        ColumnaKlondike columnaSeleccionada = columnas.get(4);
 
         assertFalse(tableu.agregarCartas(5, cartas));
         assertEquals((columnaSeleccionada.getCartasVisibles()).size(), 1);
     }
     @Test
     public void testAgregarVarias() {
-        ArrayList<Columna> columnas = new ArrayList<>();
+        ArrayList<ColumnaKlondike> columnas = new ArrayList<>();
         for (int i = 0; i < 7; i++) {
             Pile pila = new Pile();
             pila.add(new Carta(i+1, Carta.Palo.DIAMANTE));
             columnas.add(new ColumnaKlondike(pila));
         }
-        Tableu tableu = new Tableu(columnas);
+        var tableu = new TableuKlondike(columnas);
         ArrayList<Carta> cartas = new ArrayList<>();
         cartas.add(new Carta(4, Carta.Palo.PICA));
         cartas.add(new Carta(3, Carta.Palo.CORAZON));
-        Columna columnaSeleccionada = columnas.get(4);
+        ColumnaKlondike columnaSeleccionada = columnas.get(4);
 
         assertTrue(tableu.agregarCartas(5, cartas));
         assertEquals((columnaSeleccionada.getCartasVisibles()).size(), 3);
@@ -133,13 +133,13 @@ public class TableuKlondikeTest {
     //tests sacarCarta
     @Test
     public void testSacarColumnaInvalida() {
-        ArrayList<Columna> columnas = new ArrayList<>();
+        ArrayList<ColumnaKlondike> columnas = new ArrayList<>();
         for (int i = 0; i < 7; i++) {
             Pile pila = new Pile();
             pila.add(new Carta(i+1, Carta.Palo.DIAMANTE));
             columnas.add(new ColumnaKlondike(pila));
         }
-        Tableu tableu = new Tableu(columnas);
+        var tableu = new TableuKlondike(columnas);
 
         ArrayList<Carta> cartasSacadas = tableu.sacarCartas(8, 1);
 
@@ -147,14 +147,14 @@ public class TableuKlondikeTest {
     }
     @Test
     public void testSacarNinguna() {
-        ArrayList<Columna> columnas = new ArrayList<>();
+        ArrayList<ColumnaKlondike> columnas = new ArrayList<>();
         for (int i = 0; i < 7; i++) {
             Pile pila = new Pile();
             pila.add(new Carta(i+1, Carta.Palo.DIAMANTE));
             columnas.add(new ColumnaKlondike(pila));
         }
-        Tableu tableu = new Tableu(columnas);
-        Columna columnaSeleccionada = columnas.get(3);
+        var tableu = new TableuKlondike(columnas);
+        ColumnaKlondike columnaSeleccionada = columnas.get(3);
 
         ArrayList<Carta> cartasSacadas = tableu.sacarCartas(4, 0);
 
@@ -163,14 +163,14 @@ public class TableuKlondikeTest {
     }
     @Test
     public void testSacarParte() {
-        ArrayList<Columna> columnas = new ArrayList<>();
+        ArrayList<ColumnaKlondike> columnas = new ArrayList<>();
         for (int i = 0; i < 7; i++) {
             Pile pila = new Pile();
             pila.add(new Carta(i+1, Carta.Palo.DIAMANTE));
             columnas.add(new ColumnaKlondike(pila));
         }
-        Tableu tableu = new Tableu(columnas);
-        Columna columnaSeleccionada = columnas.get(6);
+        var tableu = new TableuKlondike(columnas);
+        ColumnaKlondike columnaSeleccionada = columnas.get(6);
         ArrayList<Carta> cartasAgregarColumna = new ArrayList<>();
         cartasAgregarColumna.add(new Carta(6, Carta.Palo.TREBOL));
         cartasAgregarColumna.add(new Carta(5, Carta.Palo.CORAZON));
@@ -185,14 +185,14 @@ public class TableuKlondikeTest {
     }
     @Test
     public void testSacarTodo() {
-        ArrayList<Columna> columnas = new ArrayList<>();
+        ArrayList<ColumnaKlondike> columnas = new ArrayList<>();
         for (int i = 0; i < 7; i++) {
             Pile pila = new Pile();
             pila.add(new Carta(i+1, Carta.Palo.DIAMANTE));
             columnas.add(new ColumnaKlondike(pila));
         }
-        Tableu tableu = new Tableu(columnas);
-        Columna columnaSeleccionada = columnas.get(6);
+        var tableu = new TableuKlondike(columnas);
+        ColumnaKlondike columnaSeleccionada = columnas.get(6);
         ArrayList<Carta> cartasAgregarColumna = new ArrayList<>();
         cartasAgregarColumna.add(new Carta(6, Carta.Palo.TREBOL));
         cartasAgregarColumna.add(new Carta(5, Carta.Palo.CORAZON));
@@ -206,7 +206,7 @@ public class TableuKlondikeTest {
         assertEquals((cartasSacadas.get(1).getPalo()), Carta.Palo.TREBOL);
         assertEquals((cartasSacadas.get(2).getPalo()), Carta.Palo.CORAZON);
     }
-    */
+    
 
 }
 

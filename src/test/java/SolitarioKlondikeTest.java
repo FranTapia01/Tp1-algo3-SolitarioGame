@@ -92,14 +92,20 @@ public class SolitarioKlondikeTest {
     }
 
     @Test
-    public void testSerializar() throws IOException {
+    public void testSerializacion() throws IOException, ClassNotFoundException {
         var solitario = new SolitarioKlondike(seed);
+        for (int i = 0; i < 22; i++) solitario.pedirCarta();
+
         var file = new FileOutputStream("doc/archivo.dat");
-        var output = new ObjectOutputStream(file);
+        solitario.serializar(file);
 
-        solitario.serializar(output);
+        SolitarioKlondike solitarioDeserializado = (SolitarioKlondike) Solitario.deserializar(new FileInputStream("doc/archivo.dat"));
+        var movimientoValido = solitarioDeserializado.wasteToFoundation(3);
+
+        assertNotNull(solitarioDeserializado);
+        assertTrue(movimientoValido);
     }
-
+/*
     @Test
     public void testDeserializar() throws IOException {
         var solitario = new SolitarioKlondike(seed);
@@ -115,5 +121,5 @@ public class SolitarioKlondikeTest {
             throw new RuntimeException(e);
         }
 
-    }
+    }*/
 }
