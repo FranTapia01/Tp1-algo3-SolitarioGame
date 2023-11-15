@@ -2,10 +2,7 @@ import java.util.ArrayList;
 
 public class SolitarioSpider extends Solitario<ColumnaSpider> {
     public SolitarioSpider(int seed){
-        int cantBarajas = 2;
-        this.stock = crearStock(seed, cantBarajas);
-        int tamanioFoundation = 8;
-        this.foundation = new Foundation(tamanioFoundation);
+        super(2, 8, seed);
         this.tableu = new TableuSpider(crearColumnas());
     }
 

@@ -5,10 +5,7 @@ public class SolitarioKlondike extends Solitario<ColumnaKlondike> {
     private final Pile waste;
 
     public SolitarioKlondike(int seed){
-        int cantBarajas = 1;
-        this.stock = crearStock(cantBarajas, seed);
-        int tamanioFoundation = 4;
-        this.foundation = new Foundation(tamanioFoundation);
+        super(1, 4, seed);
         this.tableu = new TableuKlondike(crearColumnas());
         this.waste = new Pile();
     }

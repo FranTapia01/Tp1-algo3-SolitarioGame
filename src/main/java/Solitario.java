@@ -8,7 +8,9 @@ public abstract class Solitario<T extends Columna> implements Serializable{
     protected Foundation foundation;
     protected Pile stock;
 
-    public Solitario() {
+    public Solitario(int cantBarajas, int tamanioFoundation, int seed) {
+        this.stock = crearStock(cantBarajas, seed);
+        this.foundation = new Foundation(tamanioFoundation);
     }
 
     public Solitario(Pile stock, Foundation foundation, Tableu<T> tableu) {
