@@ -105,21 +105,4 @@ public class SolitarioKlondikeTest {
         assertNotNull(solitarioDeserializado);
         assertTrue(movimientoValido);
     }
-/*
-    @Test
-    public void testDeserializar() throws IOException {
-        var solitario = new SolitarioKlondike(seed);
-        var file = new FileOutputStream("doc/archivo.dat");
-        var output = new ObjectOutputStream(file);
-        solitario.serializar(output);
-
-        var file2 = new FileInputStream("doc/archivo.dat");
-        var input = new ObjectInputStream(file2);
-        try {
-            var KLondike = SolitarioKlondike.deserializar(input);
-        } catch (ClassNotFoundException e) {
-            throw new RuntimeException(e);
-        }
-
-    }*/
 }
