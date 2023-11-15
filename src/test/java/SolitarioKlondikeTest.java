@@ -96,10 +96,10 @@ public class SolitarioKlondikeTest {
         var solitario = new SolitarioKlondike(seed);
         for (int i = 0; i < 22; i++) solitario.pedirCarta();
 
-        var file = new FileOutputStream("doc/archivo.dat");
-        solitario.serializar(file);
+        var bytes = new ByteArrayOutputStream();
+        solitario.serializar(bytes);
 
-        SolitarioKlondike solitarioDeserializado = (SolitarioKlondike) Solitario.deserializar(new FileInputStream("doc/archivo.dat"));
+        SolitarioKlondike solitarioDeserializado = (SolitarioKlondike) SolitarioKlondike.deserializar(new ByteArrayInputStream(bytes.toByteArray()));
         var movimientoValido = solitarioDeserializado.wasteToFoundation(3);
 
         assertNotNull(solitarioDeserializado);
