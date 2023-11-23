@@ -1,6 +1,6 @@
+import SolitarioBase.Carta;
+import SolitarioBase.Foundation;
 import org.junit.Test;
-
-import java.util.ArrayList;
 
 import static org.junit.Assert.*;
 

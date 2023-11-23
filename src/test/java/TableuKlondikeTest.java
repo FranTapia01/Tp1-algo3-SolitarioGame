@@ -1,3 +1,7 @@
+import SolitarioBase.Carta;
+import SolitarioBase.Pile;
+import SolitarioKlondike.ColumnaKlondike;
+import SolitarioKlondike.TableuKlondike;
 import org.junit.Test;
 import static org.junit.Assert.*;
 import java.util.ArrayList;

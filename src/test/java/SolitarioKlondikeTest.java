@@ -1,3 +1,6 @@
+import SolitarioBase.Foundation;
+import SolitarioBase.Pile;
+import SolitarioKlondike.SolitarioKlondike;
 import org.junit.Test;
 
 import java.io.*;

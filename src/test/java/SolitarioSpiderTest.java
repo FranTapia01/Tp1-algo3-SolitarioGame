@@ -1,3 +1,6 @@
+import SolitarioBase.Foundation;
+import SolitarioBase.Pile;
+import SolitarioSpider.SolitarioSpider;
 import org.junit.Test;
 
 import java.util.ArrayList;

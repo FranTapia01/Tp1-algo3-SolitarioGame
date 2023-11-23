@@ -1,3 +1,6 @@
+import SolitarioBase.Carta;
+import SolitarioBase.Pile;
+import SolitarioSpider.ColumnaSpider;
 import org.junit.Test;
 
 import java.util.ArrayList;
