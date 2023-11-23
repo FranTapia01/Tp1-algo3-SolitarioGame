@@ -9,15 +9,12 @@ import javafx.scene.layout.Pane;
 public class TableuView<T extends Columna> {
     private Tableu<T> tableu;
 
-    private Pane paneMain;
+    private Pane ventana;
     private Image cartaRevez;
-
-
-
-
+    
     public TableuView(Tableu<T> tableu, Pane ventana) {
         this.tableu = tableu;
-        this.paneMain = ventana;
+        this.ventana = ventana;
         cartaRevez = new Image("file:doc/img/blue_back.gif");
     }
 
@@ -29,24 +26,24 @@ public class TableuView<T extends Columna> {
     }
 
     private void dibujarCartasOcultas() {
-
+        int margenVisible = 25;
         for (int i = 1; i <= tableu.getTableuColumnas().size(); i++) {
             int yAgregado = 0;
             for (int j = 1; j <= tableu.getTableuColumnas().get(i-1).getCantidadCartasNoVisibles(); j++) {
                 var imagenCarta = new ImageView(cartaRevez);
                 imagenCarta.setTranslateY(yAgregado);
-                ((Pane)paneMain.lookup("#cajaTableu"+i)).getChildren().add(imagenCarta);
-                yAgregado += 25;
+                ((Pane)ventana.lookup("#cajaTableu"+i)).getChildren().add(imagenCarta);
+                yAgregado += margenVisible;
             }
         }
     }
     private void dibujarCartasVisibles() {
-
+        int margenVisible = 25;
         for (int i = 1; i <= tableu.getTableuColumnas().size(); i++) {
             int yAgregado = 0;
             var columna = tableu.getTableuColumnas().get(i-1);
             for (int j = 0; j < columna.getCantidadCartasNoVisibles(); j++) {
-                yAgregado+=25;
+                yAgregado+=margenVisible;
             }
                 for (Carta carta : columna.getCartasVisibles()) {
 
@@ -54,15 +51,15 @@ public class TableuView<T extends Columna> {
                     var imagen = new Image("file:doc/img/"+carta.getId()+".gif");
                     var imagenCarta = new ImageView(imagen);
                     imagenCarta.setTranslateY(yAgregado);
-                    ((Pane)paneMain.lookup("#cajaTableu"+i)).getChildren().add(imagenCarta);
-                    yAgregado += 25;
+                    ((Pane)ventana.lookup("#cajaTableu"+i)).getChildren().add(imagenCarta);
+                    yAgregado += margenVisible;
                 }
         }
     }
 
     private void limpiarTableu() {
         for (int i = 1; i <= tableu.getTableuColumnas().size(); i++) {
-            ((Pane)paneMain.lookup("#cajaTableu"+i)).getChildren().clear();
+            ((Pane)ventana.lookup("#cajaTableu"+i)).getChildren().clear();
         }
     }
 

@@ -125,12 +125,14 @@ public class Main extends Application {
 
 
     private int cantCartasSeleccionadas(Columna columna, double y) {
-        int yBase = columna.getCantidadCartasNoVisibles()*25;
+        int margenVisible = 25;
+        int altoCarta = 95;
+        int yBase = columna.getCantidadCartasNoVisibles()*margenVisible;
         int cantCartas = columna.getCartasVisibles().size();
         for (int i = 0; i < cantCartas; i++) {
-            int yTope = yBase+25;
+            int yTope = yBase+margenVisible;
             if (i == cantCartas-1) {
-                yTope = yBase+95;
+                yTope = yBase+altoCarta;
             }
             if (y > yBase && y < yTope) {
                 return cantCartas-i;

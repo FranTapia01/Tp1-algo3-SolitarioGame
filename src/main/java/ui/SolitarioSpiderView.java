@@ -20,8 +20,6 @@ public class SolitarioSpiderView implements SolitarioView{
     Pane cajaFoundation;
     @FXML
     Pane cajaTableu;
-    @FXML
-    Pane cajaWaste;
 
     Pile stockView;
     TableuView<ColumnaKlondike> tableuView;
