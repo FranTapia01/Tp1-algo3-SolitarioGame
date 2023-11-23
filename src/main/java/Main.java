@@ -7,7 +7,6 @@ import javafx.application.Application;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import ui.SolitarioSpiderView;
@@ -17,14 +16,7 @@ import java.io.IOException;
 
 public class Main extends Application {
 
-    @FXML
-    Pane cajaStock;
-    @FXML
-    Pane cajaWaste;
-    @FXML
-    Pane cajaFoundation;
-    @FXML
-    Pane cajaTableu;
+
     @FXML
     Pane opcionSpider;
     @FXML
@@ -59,36 +51,19 @@ public class Main extends Application {
 
         opcionKlondike.setOnMouseClicked(e -> {
             solitario = new SolitarioKlondike(2);
-            var loaderKlondike = new FXMLLoader(getClass().getResource("tableroKlondikeNuevo.fxml"));
-            loaderKlondike.setController(this);
-            AnchorPane ventanaKlondike;
-            try {
-                ventanaKlondike = loaderKlondike.load();
-            } catch (IOException ex) {
-                throw new RuntimeException(ex);
-            }
-            solitarioView = new SolitarioKlondikeView((SolitarioKlondike) solitario, ventanaKlondike);
+            solitarioView = new SolitarioKlondikeView((SolitarioKlondike) solitario);
             solitarioView.dibujarSolitario();
-            mostrarJuego(ventanaKlondike);
+            mostrarJuego(solitarioView.getVentana());
 
         });
 
         opcionSpider.setOnMouseClicked(e -> {
             solitario = new SolitarioSpider(2);
-            var loaderSpider = new FXMLLoader(getClass().getResource("tableroSpiderNuevo.fxml"));
-            loaderSpider.setController(this);
-            AnchorPane ventanaSpider;
-
-            try {
-                ventanaSpider = loaderSpider.load();
-            } catch (IOException ex) {
-                throw new RuntimeException(ex);
-            }
-            solitarioView = new SolitarioSpiderView((SolitarioSpider) solitario, ventanaSpider);
+            solitarioView = new SolitarioSpiderView((SolitarioSpider) solitario);
             solitarioView.dibujarSolitario();
-            mostrarJuego(ventanaSpider);
-
+            mostrarJuego(solitarioView.getVentana());
         });
+
         var scene = new Scene(ventana, 800, 700);
         stage.setScene(scene);
         stage.show();
@@ -97,31 +72,26 @@ public class Main extends Application {
     private void mostrarJuego(AnchorPane ventana) {
         if (ventana.getId().equals("solitarioKlondike")) {
             //WASTE
-            cajaWaste.setOnMouseClicked(ActionEvent -> {
+            ((SolitarioKlondikeView)solitarioView).getCajaWaste().setOnMouseClicked(ActionEvent -> {
                 wasteSeleccionado = true;
             });
             //FOUNDATION
-            int numChildren = cajaFoundation.getChildren().size();
-            for (int i = 0; i < numChildren; i++) {
-                int pos = i+1;
-                javafx.scene.Node node = cajaFoundation.getChildren().get(i);
-                if (node instanceof Pane pane) {
-                    pane.setOnMouseClicked(ActionEvent -> {
-                        manejarEvento(solitario.getFoundation(), pos, solitario, 1);
-                    });
-                }
+            for (int i = 1; i <= solitarioView.getTamanioFoundation(); i++) {
+                int pos = i;
+                (ventana.lookup("#cajaFoundation"+i)).setOnMouseClicked(ActionEvent -> {
+                    manejarEvento(solitario.getFoundation(), pos, solitario, 1);
+                });
             }
         }
 
         //STOCK
-        ventana.lookup("#cajaStock").setOnMouseClicked(ActionEvent -> {
+        solitarioView.getCajaStock().setOnMouseClicked(ActionEvent -> {
             solitario.pedirCarta();
             solitarioView.dibujarSolitario();
         });
 
         //TABLEU
-        int num = cajaTableu.getChildren().size();
-        for (int i = 1; i <= num; i++) {
+        for (int i = 1; i <= solitarioView.getTamanioTableu(); i++) {
             int pos = i;
             (ventana.lookup("#cajaTableu"+i)).setOnMouseClicked(ActionEvent -> {
                 int cantidad = cantCartasSeleccionadas((Columna)solitario.getTableu().getTableuColumnas().get(pos-1), ActionEvent.getY());
