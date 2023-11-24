@@ -24,7 +24,7 @@ public class PileView {
 
     private void cargarImagen() {
         if (!pileADibujar.isEmpty()) {
-            var imagen = new Image("file:doc/img/"+pileADibujar.peek().getId()+".gif");
+            var imagen = new Image(String.valueOf(getClass().getResource("/img/"+pileADibujar.peek().getId()+".gif")));
             this.imagenCarta = new ImageView(imagen);
         }
     }

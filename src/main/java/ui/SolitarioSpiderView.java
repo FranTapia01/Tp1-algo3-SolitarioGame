@@ -46,7 +46,7 @@ public class SolitarioSpiderView implements SolitarioView{
 
     private void dibujarStock(){
         if (!stockView.isEmpty()) {
-            var imagen = new Image("file:doc/img/blue_back.gif");
+            var imagen = new Image(String.valueOf(getClass().getResource("/img/blue_back.gif")));
             ((Pane) ventana.lookup("#cajaStock")).getChildren().add(new ImageView(imagen));
         } else {
             ((Pane) ventana.lookup("#cajaStock")).getChildren().clear();

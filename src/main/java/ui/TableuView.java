@@ -15,7 +15,7 @@ public class TableuView<T extends Columna> {
     public TableuView(Tableu<T> tableu, Pane ventana) {
         this.tableu = tableu;
         this.ventana = ventana;
-        cartaRevez = new Image("file:doc/img/blue_back.gif");
+        cartaRevez = new Image(String.valueOf(getClass().getResource("/img/blue_back.gif")));
     }
 
     public void dibujarTableu() {
@@ -48,7 +48,7 @@ public class TableuView<T extends Columna> {
                 for (Carta carta : columna.getCartasVisibles()) {
 
 
-                    var imagen = new Image("file:doc/img/"+carta.getId()+".gif");
+                    var imagen = new Image(String.valueOf(getClass().getResource("/img/"+carta.getId()+".gif")));
                     var imagenCarta = new ImageView(imagen);
                     imagenCarta.setTranslateY(yAgregado);
                     ((Pane)ventana.lookup("#cajaTableu"+i)).getChildren().add(imagenCarta);

@@ -50,7 +50,7 @@ public class Main extends Application {
         AnchorPane ventana = loader.load();
 
         opcionKlondike.setOnMouseClicked(e -> {
-            solitario = new SolitarioKlondike(2);
+            solitario = new SolitarioKlondike(1);
             solitarioView = new SolitarioKlondikeView((SolitarioKlondike) solitario);
             solitarioView.dibujarSolitario();
             mostrarJuego(solitarioView.getVentana());
