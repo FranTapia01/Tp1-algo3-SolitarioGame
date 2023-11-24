@@ -1,5 +1,6 @@
 package ui;
 
+import SolitarioBase.Foundation;
 import SolitarioBase.Pile;
 import SolitarioKlondike.ColumnaKlondike;
 import SolitarioSpider.SolitarioSpider;
@@ -23,24 +24,22 @@ public class SolitarioSpiderView implements SolitarioView{
 
     Pile stockView;
     TableuView<ColumnaKlondike> tableuView;
-    ArrayList<PileView> foundationView;
+    Foundation foundationView;
     AnchorPane ventana;
+    Image cartaRevez;
 
     public SolitarioSpiderView(SolitarioSpider solitario) {
         this.stockView = solitario.getStock();
-        this.foundationView = new ArrayList<>();
-        for (int i = 1; i <= 4; i++) {
-            foundationView.add(new PileView(solitario.getFoundation().getPileFoundation(i)));
-        }
+        this.foundationView = solitario.getFoundation();
         cargarVentana();
         this.tableuView = new TableuView(solitario.getTableu(), ventana);
+        cartaRevez = new Image(String.valueOf(getClass().getResource("/img/blue_back.gif")));
+
     }
 
     public void dibujarSolitario() {
         dibujarStock();
-        for (int i = 1; i <= foundationView.size(); i++) {
-            foundationView.get(i-1).dibujarPile((Pane) ventana.lookup("#cajaFoundation"+i));
-        }
+        dibujarFoundation();
         tableuView.dibujarTableu();
     }
 
@@ -50,6 +49,15 @@ public class SolitarioSpiderView implements SolitarioView{
             ((Pane) ventana.lookup("#cajaStock")).getChildren().add(new ImageView(imagen));
         } else {
             ((Pane) ventana.lookup("#cajaStock")).getChildren().clear();
+        }
+    }
+
+    private void dibujarFoundation() {
+        for (int i = 1; i <= 8; i++) {
+            if (!foundationView.getPileFoundation(i).isEmpty()) {
+                var imagenCarta = new ImageView(cartaRevez);
+                ((Pane) ventana.lookup("#cajaFoundation"+i)).getChildren().add(imagenCarta);
+            }
         }
     }
 

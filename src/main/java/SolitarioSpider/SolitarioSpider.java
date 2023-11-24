@@ -1,9 +1,6 @@
 package SolitarioSpider;
 
-import SolitarioBase.Carta;
-import SolitarioBase.Foundation;
-import SolitarioBase.Pile;
-import SolitarioBase.Solitario;
+import SolitarioBase.*;
 
 import java.util.ArrayList;
 
@@ -28,7 +25,11 @@ public class SolitarioSpider extends Solitario<ColumnaSpider> {
         return ((TableuSpider) this.tableu).repartirCartas(cartas);
     }
 
-
+    public boolean moverCarta(AreaJugable origen, AreaJugable destino, int posOrigen, int posDestino, int cantCartas) {
+        boolean movimientoValido = super.moverCarta(origen, destino, posOrigen, posDestino, cantCartas);
+        columnaCompletaToFoundation(posDestino);
+        return movimientoValido;
+    }
 
     private ArrayList<ColumnaSpider> crearColumnas() {
         var columnas = new ArrayList<ColumnaSpider>();
@@ -45,7 +46,7 @@ public class SolitarioSpider extends Solitario<ColumnaSpider> {
         }
         return columnas;
     }
-/*
+
     private void columnaCompletaToFoundation(int posColumna) {
         var cartas = ((TableuSpider) this.tableu).hayColumnaCompleta(posColumna);
         if (!cartas.isEmpty()) {
@@ -54,10 +55,12 @@ public class SolitarioSpider extends Solitario<ColumnaSpider> {
 
             while (!numFoundationValido) {
                 for (int i = 0; i < 13; i++) {
-                    numFoundationValido = foundation.agregarCartas(numFoundation, cartas.get(i));
+                    var carta = new ArrayList<Carta>();
+                    carta.add(cartas.get(i));
+                    numFoundationValido = foundation.agregarCartas(numFoundation, carta);
                 }
                 numFoundation++;
             }
         }
-    }*/
+    }
 }

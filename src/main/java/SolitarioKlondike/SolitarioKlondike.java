@@ -45,28 +45,6 @@ public class SolitarioKlondike extends Solitario<ColumnaKlondike> {
         return false;
     }
 
-    /*
-    public boolean wasteToFoundation(int numFoundation) {
-        if (!waste.isEmpty()) {
-            Carta carta = waste.peek();
-            if (!(this.foundation.agregarCartas(numFoundation, carta))) { return false;}
-            waste.pop();
-            return true;
-        }
-        return false;
-    }
-
-    public boolean wasteToTableu(int numColumna) {
-        if (!waste.isEmpty()) {
-            ArrayList<Carta> cartas = new ArrayList<>();
-            cartas.add(waste.peek());
-            if (!(this.tableu.agregarCartas(numColumna, cartas))) {return false;}
-            waste.pop();
-            return true;
-        }
-        return false;
-    }
-    */
     private ArrayList<ColumnaKlondike>crearColumnas() {
         var columnas = new ArrayList<ColumnaKlondike>();
         int cantDeColumnas = 7;

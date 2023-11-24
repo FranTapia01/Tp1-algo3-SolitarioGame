@@ -56,7 +56,7 @@ public abstract class Solitario<T extends Columna> implements Serializable{
             }
         }
         var rnd = new Random(seed);
-        Collections.shuffle(stock, rnd);
+        //Collections.shuffle(stock, rnd);
         return stock;
     }
 

@@ -15,13 +15,10 @@ import java.io.IOException;
 
 
 public class Main extends Application {
-
-
     @FXML
     Pane opcionSpider;
     @FXML
     Pane opcionKlondike;
-
 
     private AreaJugable areaOrigen = null;
     private int posOrigen;
@@ -29,9 +26,7 @@ public class Main extends Application {
     private int cantCartas;
     private SolitarioView solitarioView;
     private Solitario solitario;
-
     private Stage stage;
-
 
     @Override
     public void start(Stage stage) throws Exception{
@@ -40,9 +35,6 @@ public class Main extends Application {
 
     }
 
-
-
-
     private void mostrarMenu() throws IOException {
         stage.setTitle("Solitario");
         var loader = new FXMLLoader(getClass().getResource("menuInicio.fxml"));
@@ -50,7 +42,7 @@ public class Main extends Application {
         AnchorPane ventana = loader.load();
 
         opcionKlondike.setOnMouseClicked(e -> {
-            solitario = new SolitarioKlondike(1);
+            solitario = new SolitarioKlondike(2);
             solitarioView = new SolitarioKlondikeView((SolitarioKlondike) solitario);
             solitarioView.dibujarSolitario();
             mostrarJuego(solitarioView.getVentana());
@@ -94,7 +86,7 @@ public class Main extends Application {
                 manejarEvento(solitario.getTableu(), pos, solitario, cantidad);
             });
         }
-        Scene juegoScene = new Scene(ventana, 800, 700);
+        Scene juegoScene = new Scene(ventana, 800, 800);
         stage.setScene(juegoScene);
     }
 
