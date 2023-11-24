@@ -72,15 +72,11 @@ public class Main extends Application {
     private void mostrarJuego(AnchorPane ventana) {
         if (ventana.getId().equals("solitarioKlondike")) {
             //WASTE
-            ((SolitarioKlondikeView)solitarioView).getCajaWaste().setOnMouseClicked(ActionEvent -> {
-                wasteSeleccionado = true;
-            });
+            ((SolitarioKlondikeView)solitarioView).getCajaWaste().setOnMouseClicked(ActionEvent -> wasteSeleccionado = true);
             //FOUNDATION
             for (int i = 1; i <= solitarioView.getTamanioFoundation(); i++) {
                 int pos = i;
-                (ventana.lookup("#cajaFoundation"+i)).setOnMouseClicked(ActionEvent -> {
-                    manejarEvento(solitario.getFoundation(), pos, solitario, 1);
-                });
+                (ventana.lookup("#cajaFoundation"+i)).setOnMouseClicked(ActionEvent -> manejarEvento(solitario.getFoundation(), pos, solitario, 1));
             }
         }
 
@@ -140,8 +136,6 @@ public class Main extends Application {
             yBase = yTope;
         }
         return 0;
-
-
     }
 }
 
