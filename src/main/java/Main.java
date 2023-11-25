@@ -95,7 +95,7 @@ public class Main extends Application {
 
     private void manejarEvento(AreaJugable area, int pos, Solitario solitario, int cantCartas) {
         if (solitario instanceof SolitarioKlondike && wasteSeleccionado) {
-            ((SolitarioKlondike)solitario).moverCarta(area, pos);
+            ((SolitarioKlondike)solitario).wasteToAreaJugable(area, pos);
             wasteSeleccionado = false;
 
             return;

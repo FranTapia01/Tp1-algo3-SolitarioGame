@@ -26,6 +26,7 @@ public class SolitarioSpider extends Solitario<ColumnaSpider> {
         return ((TableuSpider) this.tableu).repartirCartas(cartas);
     }
 
+    @Override
     public boolean moverCarta(AreaJugable origen, AreaJugable destino, int posOrigen, int posDestino, int cantCartas) {
         boolean movimientoValido = super.moverCarta(origen, destino, posOrigen, posDestino, cantCartas);
         columnaCompletaToFoundation(posDestino);

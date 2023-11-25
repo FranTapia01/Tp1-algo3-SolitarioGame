@@ -35,7 +35,7 @@ public class SolitarioKlondike extends Solitario<ColumnaKlondike> {
     }
 
 
-    public boolean moverCarta(AreaJugable destino, int posDestino) {
+    public boolean wasteToAreaJugable(AreaJugable destino, int posDestino) {
         if (!waste.isEmpty()) {
             var carta = new ArrayList<Carta>();
             carta.add(waste.peek());

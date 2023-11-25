@@ -1,6 +1,7 @@
-/*import SolitarioBase.Foundation;
+import SolitarioBase.Foundation;
 import SolitarioBase.Pile;
 import SolitarioKlondike.SolitarioKlondike;
+import SolitarioKlondike.TableuKlondike;
 import org.junit.Test;
 
 import java.io.*;
@@ -25,7 +26,7 @@ public class SolitarioKlondikeTest {
         var solitario = new SolitarioKlondike(seed);
         for (int i = 0; i < 5; i++) solitario.pedirCarta();
 
-        boolean movimientoValido = solitario.wasteToTableu(7);
+        boolean movimientoValido = solitario.wasteToAreaJugable(solitario.getTableu(), 7);
 
         assertTrue(movimientoValido);
     }
@@ -36,8 +37,8 @@ public class SolitarioKlondikeTest {
         for (int i = 0; i < 22; i++) solitario.pedirCarta();
 
 
-        boolean movimiento1 = solitario.wasteToFoundation(3);
-        boolean movimiento2 = solitario.foundationToFoundation(3, 1);
+        boolean movimiento1 = solitario.wasteToAreaJugable(solitario.getFoundation(), 3);
+        boolean movimiento2 = solitario.moverCarta(solitario.getFoundation(), solitario.getFoundation(), 3, 1, 1);
 
         assertTrue(movimiento1);
         assertTrue(movimiento2);
@@ -47,11 +48,11 @@ public class SolitarioKlondikeTest {
     public void testMovimientosFoundationInvalidos() {
         var solitario = new SolitarioKlondike(seed);
         for (int i = 0; i < 22; i++) solitario.pedirCarta();
-        solitario.wasteToFoundation(3);
-        solitario.foundationToFoundation(3, 1);
+        solitario.wasteToAreaJugable(solitario.getFoundation(), 3);
+        solitario.moverCarta(solitario.getFoundation(), solitario.getFoundation(), 3, 1, 1);
 
-        boolean movimiento1 = solitario.foundationToTableu(1, 5);
-        boolean movimiento2 = solitario.tableuToFoundation(4, 4);
+        boolean movimiento1 = solitario.moverCarta(solitario.getFoundation(), solitario.getTableu(), 1, 5, 1);
+        boolean movimiento2 = solitario.moverCarta(solitario.getTableu(), solitario.getFoundation(), 4, 4, 1);
 
         assertFalse(movimiento1);
         assertFalse(movimiento2);
@@ -61,16 +62,16 @@ public class SolitarioKlondikeTest {
     public void testMoverMasDeUnaCarta() {
         var solitario = new SolitarioKlondike(seed);
         for (int i = 0; i < 5; i++) solitario.pedirCarta();
-        solitario.wasteToTableu(7);
+        solitario.wasteToAreaJugable(solitario.getTableu(), 7);
         for (int i = 0; i < 3; i++) solitario.pedirCarta();
-        solitario.wasteToTableu(1);
+        solitario.wasteToAreaJugable(solitario.getTableu(), 1);
         for (int i = 0; i < 9; i++) solitario.pedirCarta();
-        solitario.wasteToTableu(3);
+        solitario.wasteToAreaJugable(solitario.getTableu(), 3);
         for (int i = 0; i < 5; i++) solitario.pedirCarta();
-        solitario.wasteToTableu(3);
+        solitario.wasteToAreaJugable(solitario.getTableu(), 3);
 
-        boolean movimiento1 = solitario.tableuToTableu(7, 6, 2);
-        boolean movimiento2 = solitario.tableuToTableu(1, 2, 2);
+        boolean movimiento1 = solitario.moverCarta(solitario.getTableu(), solitario.getTableu(), 7, 6, 2);
+        boolean movimiento2 = solitario.moverCarta(solitario.getTableu(), solitario.getTableu(), 1, 2, 2);
 
         assertTrue(movimiento1);
         assertFalse(movimiento2);
@@ -103,10 +104,10 @@ public class SolitarioKlondikeTest {
         solitario.serializar(bytes);
 
         SolitarioKlondike solitarioDeserializado = (SolitarioKlondike) SolitarioKlondike.deserializar(new ByteArrayInputStream(bytes.toByteArray()));
-        var movimientoValido = solitarioDeserializado.wasteToFoundation(3);
+        var movimientoValido = solitarioDeserializado.wasteToAreaJugable(solitario.getFoundation(), 3);
 
         assertNotNull(solitarioDeserializado);
         assertTrue(movimientoValido);
     }
+
 }
-*/
