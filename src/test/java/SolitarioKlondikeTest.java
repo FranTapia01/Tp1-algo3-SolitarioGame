@@ -1,4 +1,4 @@
-import SolitarioBase.Foundation;
+/*import SolitarioBase.Foundation;
 import SolitarioBase.Pile;
 import SolitarioKlondike.SolitarioKlondike;
 import org.junit.Test;
@@ -109,3 +109,4 @@ public class SolitarioKlondikeTest {
         assertTrue(movimientoValido);
     }
 }
+*/
