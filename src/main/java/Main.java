@@ -75,7 +75,7 @@ public class Main extends Application {
         //STOCK
         solitarioView.getCajaStock().setOnMouseClicked(ActionEvent -> {
             solitario.pedirCarta();
-            solitarioView.dibujarSolitario();
+
         });
 
         //TABLEU
@@ -83,7 +83,9 @@ public class Main extends Application {
             int pos = i;
             (ventana.lookup("#cajaTableu"+i)).setOnMouseClicked(ActionEvent -> {
                 int cantidad = cantCartasSeleccionadas((Columna)solitario.getTableu().getTableuColumnas().get(pos-1), ActionEvent.getY());
+
                 manejarEvento(solitario.getTableu(), pos, solitario, cantidad);
+
             });
         }
         Scene juegoScene = new Scene(ventana, 800, 800);
@@ -95,7 +97,7 @@ public class Main extends Application {
         if (solitario instanceof SolitarioKlondike && wasteSeleccionado) {
             ((SolitarioKlondike)solitario).moverCarta(area, pos);
             wasteSeleccionado = false;
-            solitarioView.dibujarSolitario();
+
             return;
         }
         if (areaOrigen == null) {
@@ -107,7 +109,7 @@ public class Main extends Application {
             this.areaOrigen = null;
             this.cantCartas = 0;
         }
-        solitarioView.dibujarSolitario();
+
     }
 
 

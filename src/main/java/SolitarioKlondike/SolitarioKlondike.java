@@ -30,6 +30,7 @@ public class SolitarioKlondike extends Solitario<ColumnaKlondike> {
             }
         }
         this.waste.push(this.stock.pop());
+        notificarObservadores();
         return true;
     }
 
@@ -40,6 +41,7 @@ public class SolitarioKlondike extends Solitario<ColumnaKlondike> {
             carta.add(waste.peek());
             if (!(destino.agregarCartas(posDestino, carta))) { return false;}
             waste.pop();
+            notificarObservadores();
             return true;
         }
         return false;
