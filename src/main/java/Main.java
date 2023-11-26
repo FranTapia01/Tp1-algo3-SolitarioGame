@@ -11,7 +11,8 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import ui.SolitarioSpiderView;
 import ui.SolitarioView;
-import java.io.IOException;
+
+import java.io.*;
 
 
 public class Main extends Application {
@@ -31,12 +32,14 @@ public class Main extends Application {
     @Override
     public void start(Stage stage) throws Exception{
         this.stage = stage;
-        mostrarMenu();
-
+        stage.setTitle("Solitario");
+        if (!cargarJuego()) {
+            mostrarMenu();
+        }
+        stage.show();
     }
 
     private void mostrarMenu() throws IOException {
-        stage.setTitle("Solitario");
         var loader = new FXMLLoader(getClass().getResource("menuInicio.fxml"));
         loader.setController(this);
         AnchorPane ventana = loader.load();
@@ -58,7 +61,6 @@ public class Main extends Application {
 
         var scene = new Scene(ventana, 800, 700);
         stage.setScene(scene);
-        stage.show();
     }
 
     private void mostrarJuego(AnchorPane ventana) {
@@ -75,6 +77,7 @@ public class Main extends Application {
         //STOCK
         solitarioView.getCajaStock().setOnMouseClicked(ActionEvent -> {
             solitario.pedirCarta();
+            solitarioView.dibujarSolitario();
 
         });
 
@@ -88,16 +91,24 @@ public class Main extends Application {
 
             });
         }
+
         Scene juegoScene = new Scene(ventana, 800, 800);
         stage.setScene(juegoScene);
+        stage.setOnCloseRequest(event -> {
+            try {
+                solitario.serializar(new FileOutputStream("doc/archivo.dat"));
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        });
     }
 
 
     private void manejarEvento(AreaJugable area, int pos, Solitario solitario, int cantCartas) {
         if (solitario instanceof SolitarioKlondike && wasteSeleccionado) {
             ((SolitarioKlondike)solitario).wasteToAreaJugable(area, pos);
+            solitarioView.dibujarSolitario();
             wasteSeleccionado = false;
-
             return;
         }
         if (areaOrigen == null) {
@@ -106,12 +117,12 @@ public class Main extends Application {
             this.cantCartas = cantCartas;
         } else {
             solitario.moverCarta(areaOrigen, area, posOrigen, pos, this.cantCartas);
+            solitarioView.dibujarSolitario();
             this.areaOrigen = null;
             this.cantCartas = 0;
         }
 
     }
-
 
 
     private int cantCartasSeleccionadas(Columna columna, double y) {
@@ -131,6 +142,27 @@ public class Main extends Application {
         }
         return 0;
     }
+
+    public boolean cargarJuego() throws IOException, ClassNotFoundException {
+        File file = new File("doc/archivo.dat");
+        if (!file.exists()) {
+            return false;
+        }
+        solitario = (Solitario) Solitario.deserializar(new FileInputStream(file));
+        if (solitario.juegoGanado()) {
+            return false;
+        }
+        if (solitario instanceof SolitarioKlondike) {
+            solitarioView = new SolitarioKlondikeView((SolitarioKlondike) solitario);
+        }else {
+            solitarioView = new SolitarioSpiderView((SolitarioSpider) solitario);
+        }
+        solitarioView.dibujarSolitario();
+        mostrarJuego(solitarioView.getVentana());
+        return true;
+
+    }
+
 }
 
 //PARA DIBUJAR EL RECTANGULO DE MARCAR CARTA SELECCIONADA

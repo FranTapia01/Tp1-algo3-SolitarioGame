@@ -1,7 +1,6 @@
 package ui;
 
 import SolitarioBase.Pile;
-import SolitarioBase.SolitarioObserver;
 import SolitarioKlondike.ColumnaKlondike;
 import SolitarioKlondike.SolitarioKlondike;
 import javafx.fxml.FXML;
@@ -15,7 +14,7 @@ import javafx.scene.text.Text;
 
 import java.io.IOException;
 
-public class SolitarioKlondikeView implements SolitarioView, SolitarioObserver {
+public class SolitarioKlondikeView implements SolitarioView {
     @FXML
     Pane cajaStock;
     @FXML
@@ -33,7 +32,7 @@ public class SolitarioKlondikeView implements SolitarioView, SolitarioObserver {
     public SolitarioKlondikeView(SolitarioKlondike solitario) {
         cargarVentana();
         this.solitario = solitario;
-        solitario.agregarObservador(this);
+
         this.tableuView = new TableuView(solitario.getTableu(), ventana);
         this.imagenCartaRevez = new Image(String.valueOf(getClass().getResource("/img/blue_back.gif")));
     }
@@ -66,20 +65,16 @@ public class SolitarioKlondikeView implements SolitarioView, SolitarioObserver {
     }
 
     private void dibujarJuegoGanado() {
-        /*
         if (solitario.juegoGanado()) {
             Text texto = new Text("¡Felicidades, Ganaste el Juego!");
             texto.setFont(new Font(40));
             texto.setTranslateY(400);
-            texto.setTranslateX(400);
+            texto.setTranslateX(150);
             ventana.getChildren().add(texto);
-        }*/
+        }
     }
 
-    @Override
-    public void actualizar() {
-        dibujarSolitario();
-    }
+
 
     private void cargarVentana() {
         var loaderKlondike = new FXMLLoader(getClass().getResource("/tableroKlondikeNuevo.fxml"));

@@ -22,7 +22,6 @@ public class SolitarioSpider extends Solitario<ColumnaSpider> {
         var cartas = new ArrayList<Carta>();
         var cantColumnas = 10;
         for (int i = 0; i < cantColumnas; i++) cartas.add(stock.pop());
-        notificarObservadores();
         return ((TableuSpider) this.tableu).repartirCartas(cartas);
     }
 
