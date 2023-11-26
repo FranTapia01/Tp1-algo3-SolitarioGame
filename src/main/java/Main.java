@@ -1,6 +1,8 @@
 import SolitarioBase.*;
 import SolitarioKlondike.SolitarioKlondike;
 import SolitarioSpider.SolitarioSpider;
+import javafx.scene.control.MenuItem;
+import javafx.scene.control.SplitMenuButton;
 import javafx.scene.layout.Pane;
 import ui.SolitarioKlondikeView;
 import javafx.application.Application;
@@ -73,6 +75,17 @@ public class Main extends Application {
                 (ventana.lookup("#cajaFoundation"+i)).setOnMouseClicked(ActionEvent -> manejarEvento(solitario.getFoundation(), pos, solitario, 1));
             }
         }
+
+        //settings
+        SplitMenuButton settings = (SplitMenuButton) ventana.lookup("#settings");
+        MenuItem opcion1 =  settings.getItems().get(0);
+        opcion1.setOnAction(event -> {
+            try {
+                mostrarMenu();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        });
 
         //STOCK
         solitarioView.getCajaStock().setOnMouseClicked(ActionEvent -> {
