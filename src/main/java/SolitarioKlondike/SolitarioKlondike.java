@@ -2,11 +2,13 @@ package SolitarioKlondike;
 
 import SolitarioBase.*;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 
-public class SolitarioKlondike extends Solitario<ColumnaKlondike> {
+public class SolitarioKlondike extends Solitario implements Serializable {
     private final Pile waste;
+    private final TableuKlondike tableu;
 
     public SolitarioKlondike(int seed){
         super(1, 4, seed);
@@ -15,8 +17,9 @@ public class SolitarioKlondike extends Solitario<ColumnaKlondike> {
     }
 
     public SolitarioKlondike(Pile stock, Pile waste, Foundation foundation, TableuKlondike tableu) {
-        super(stock, foundation, tableu);
+        super(stock, foundation);
         this.waste = waste;
+        this.tableu = tableu;
     }
 
     @Override
@@ -61,5 +64,8 @@ public class SolitarioKlondike extends Solitario<ColumnaKlondike> {
 
     public Pile getWaste() {
         return waste;
+    }
+    public TableuKlondike getTableu() {
+        return tableu;
     }
 }

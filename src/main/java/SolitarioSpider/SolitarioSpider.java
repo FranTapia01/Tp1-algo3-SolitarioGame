@@ -2,16 +2,21 @@ package SolitarioSpider;
 
 import SolitarioBase.*;
 
+
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class SolitarioSpider extends Solitario<ColumnaSpider> {
+public class SolitarioSpider extends Solitario implements Serializable {
+    private final TableuSpider tableu;
+
     public SolitarioSpider(int seed){
         super(2, 8, seed);
         this.tableu = new TableuSpider(crearColumnas());
     }
 
     public SolitarioSpider(Pile stock, Foundation foundation, TableuSpider tableu) {
-        super(stock, foundation, tableu);
+        super(stock, foundation);
+        this.tableu = tableu;
     }
 
     @Override
@@ -22,7 +27,7 @@ public class SolitarioSpider extends Solitario<ColumnaSpider> {
         var cartas = new ArrayList<Carta>();
         var cantColumnas = 10;
         for (int i = 0; i < cantColumnas; i++) cartas.add(stock.pop());
-        return ((TableuSpider) this.tableu).repartirCartas(cartas);
+        return this.tableu.repartirCartas(cartas);
     }
 
     @Override
@@ -31,6 +36,7 @@ public class SolitarioSpider extends Solitario<ColumnaSpider> {
         columnaCompletaToFoundation(posDestino);
         return movimientoValido;
     }
+
 
     private ArrayList<ColumnaSpider> crearColumnas() {
         var columnas = new ArrayList<ColumnaSpider>();
@@ -49,7 +55,7 @@ public class SolitarioSpider extends Solitario<ColumnaSpider> {
     }
 
     private void columnaCompletaToFoundation(int posColumna) {
-        var cartas = ((TableuSpider) this.tableu).hayColumnaCompleta(posColumna);
+        var cartas = this.tableu.hayColumnaCompleta(posColumna);
         if (!cartas.isEmpty()) {
             var numFoundation = 1;
             boolean numFoundationValido = false;
@@ -63,5 +69,9 @@ public class SolitarioSpider extends Solitario<ColumnaSpider> {
                 numFoundation++;
             }
         }
+    }
+
+    public TableuSpider getTableu() {
+        return tableu;
     }
 }

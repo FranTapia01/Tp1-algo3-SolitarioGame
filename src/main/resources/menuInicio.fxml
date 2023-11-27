@@ -32,29 +32,25 @@
       </Rectangle>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#56b55a" height="300.0" layoutX="43.0" layoutY="200.0" stroke="TRANSPARENT" strokeType="INSIDE" width="300.0" AnchorPane.leftAnchor="40.0" AnchorPane.topAnchor="200.0" />
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#56b55a" height="300.0" layoutX="438.0" layoutY="200.0" stroke="TRANSPARENT" strokeType="INSIDE" width="300.0" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="200.0" />
-      <Pane fx:id="opcionKlondike" layoutX="40.0" layoutY="200.0" prefHeight="300.0" prefWidth="300.0" AnchorPane.leftAnchor="40.0" AnchorPane.topAnchor="200.0">
+      <Text fill="WHITE" layoutX="93.0" layoutY="337.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Solitario Klondike" textAlignment="CENTER" wrappingWidth="193.689453125">
+         <font>
+            <Font size="50.0" />
+         </font>
+      </Text>
+      <Text fill="WHITE" layoutX="513.0" layoutY="337.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Solitario Spider" textAlignment="CENTER" wrappingWidth="193.689453125">
+         <font>
+            <Font size="50.0" />
+         </font>
+      </Text>
+      <Pane fx:id="opcionKlondike" prefHeight="300.0" prefWidth="300.0" AnchorPane.leftAnchor="40.0" AnchorPane.topAnchor="200.0">
          <cursor>
             <Cursor fx:constant="OPEN_HAND" />
          </cursor>
-         <children>
-            <Text fill="WHITE" layoutX="35.0" layoutY="138.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Solitario Klondike" textAlignment="CENTER" wrappingWidth="230.689453125">
-               <font>
-                  <Font size="50.0" />
-               </font>
-            </Text>
-         </children>
       </Pane>
-      <Pane fx:id="opcionSpider" layoutX="460.0" layoutY="200.0" prefHeight="300.0" prefWidth="300.0" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="200.0">
+      <Pane fx:id="opcionSpider" layoutX="10.0" layoutY="10.0" prefHeight="300.0" prefWidth="300.0" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="200.0">
          <cursor>
             <Cursor fx:constant="OPEN_HAND" />
          </cursor>
-         <children>
-            <Text fill="WHITE" layoutX="42.0" layoutY="147.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Solitario Spider" textAlignment="CENTER" wrappingWidth="215.689453125">
-               <font>
-                  <Font size="50.0" />
-               </font>
-            </Text>
-         </children>
       </Pane>
    </children>
 </AnchorPane>

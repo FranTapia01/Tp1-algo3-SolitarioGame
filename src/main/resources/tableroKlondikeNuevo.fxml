@@ -2,8 +2,7 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
-<?import javafx.scene.control.MenuItem?>
-<?import javafx.scene.control.SplitMenuButton?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
@@ -136,10 +135,13 @@
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></Pane>
-      <SplitMenuButton id="settings" layoutY="-3.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="107.0" text="settings">
-        <items>
-          <MenuItem mnemonicParsing="false" text="New game" />
-        </items>
-      </SplitMenuButton>
+      <Button fx:id="btnJuegoNuevo" layoutX="3.0" layoutY="-1.0" mnemonicParsing="false" prefHeight="21.0" prefWidth="76.0" text="Juego Nuevo" textAlignment="CENTER" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="4.0">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+         <font>
+            <Font name="System Bold" size="10.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>

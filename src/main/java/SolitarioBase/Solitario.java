@@ -5,8 +5,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Random;
 
-public abstract class Solitario<T extends Columna> implements Serializable{
-    protected Tableu<T> tableu;
+public abstract class Solitario implements Serializable{
+
     protected Foundation foundation;
     protected Pile stock;
 
@@ -15,10 +15,10 @@ public abstract class Solitario<T extends Columna> implements Serializable{
         this.foundation = new Foundation(tamanioFoundation);
     }
 
-    public Solitario(Pile stock, Foundation foundation, Tableu<T> tableu) {
+    public Solitario(Pile stock, Foundation foundation) {
         this.stock = stock;
         this.foundation = foundation;
-        this.tableu = tableu;
+
     }
 
     public abstract boolean pedirCarta();
@@ -59,7 +59,7 @@ public abstract class Solitario<T extends Columna> implements Serializable{
 
     public static Object deserializar(InputStream inputStream) throws IOException, ClassNotFoundException {
         try (ObjectInputStream objetoDeserializable = new ObjectInputStream(inputStream)) {
-            return (Solitario) objetoDeserializable.readObject();
+            return objetoDeserializable.readObject();
         }
     }
 
@@ -72,7 +72,7 @@ public abstract class Solitario<T extends Columna> implements Serializable{
         return foundation;
     }
 
-    public Tableu<T> getTableu() {
-        return tableu;
-    }
+    public abstract Tableu getTableu();
+
+
 }
