@@ -19,11 +19,6 @@ public class Foundation implements AreaJugable ,Serializable {
         }else return cartaApoyada.getNumero() + unNumeroExtra == cartaRecibida.getNumero();
     }
 
-
-
-
-
-
     public boolean estaCompleta(){
     int pileCompleta = 13;
         for (Pile pile : foundationsPiles) {

@@ -28,18 +28,15 @@ public abstract class SolitarioView {
 
     protected AnchorPane ventana;
     protected Solitario solitario;
-
     protected Image imagenCartaRevez;
 
     public SolitarioView(Solitario solitario, String ruta) {
         cargarVentana(ruta);
         this.solitario = solitario;
-
         this.imagenCartaRevez = new Image(String.valueOf(getClass().getResource("/img/blue_back.gif")));
     }
 
     public abstract void dibujarSolitario();
-
 
 
     protected void dibujarStock(){
@@ -70,8 +67,6 @@ public abstract class SolitarioView {
             ventana.getChildren().add(texto);
         }
     }
-
-
 
     protected void cargarVentana(String ruta) {
         var loaderKlondike = new FXMLLoader(getClass().getResource(ruta));

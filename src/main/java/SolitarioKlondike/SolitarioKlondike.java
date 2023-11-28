@@ -36,7 +36,6 @@ public class SolitarioKlondike extends Solitario implements Serializable {
         return true;
     }
 
-
     public boolean wasteToAreaJugable(AreaJugable destino, int posDestino) {
         if (!waste.isEmpty()) {
             var carta = new ArrayList<Carta>();

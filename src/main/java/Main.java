@@ -13,9 +13,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import ui.SolitarioSpiderView;
 import ui.SolitarioView;
-
 import java.io.*;
-
 
 public class Main extends Application {
     @FXML
@@ -57,7 +55,6 @@ public class Main extends Application {
             solitarioView = new SolitarioKlondikeView((SolitarioKlondike) solitario);
             solitarioView.dibujarSolitario();
             mostrarJuego(solitarioView.getVentana());
-
         });
 
         opcionSpider.setOnMouseClicked(e -> {
@@ -131,7 +128,6 @@ public class Main extends Application {
 
 
     private void manejarEvento(AreaJugable area, int pos, Solitario solitario, int cantCartas, Pane pane) {
-        if (cantCartas == 0) return;
         if (solitario instanceof SolitarioKlondike && wasteSeleccionado) {
             ((SolitarioKlondike)solitario).wasteToAreaJugable(area, pos);
             solitarioView.dibujarSolitario();
@@ -140,6 +136,7 @@ public class Main extends Application {
             return;
         }
         if (areaOrigen == null) {
+            if (cantCartas == 0) return;
             redimensionarMarca(area, pos, cantCartas);
             marcarCarta(pane);
             this.areaOrigen = area;

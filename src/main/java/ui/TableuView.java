@@ -8,7 +8,6 @@ import javafx.scene.layout.Pane;
 
 public class TableuView<T extends Columna> {
     private Tableu<T> tableu;
-
     private Pane ventana;
     private Image cartaRevez;
     

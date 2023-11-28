@@ -37,7 +37,6 @@ public class SolitarioSpider extends Solitario implements Serializable {
         return movimientoValido;
     }
 
-
     private ArrayList<ColumnaSpider> crearColumnas() {
         var columnas = new ArrayList<ColumnaSpider>();
         int cantDeColumnas = 10;

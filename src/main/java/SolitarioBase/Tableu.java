@@ -14,22 +14,6 @@ public class Tableu<T extends Columna> implements AreaJugable ,Serializable {
         return !(numColumna <= tableuColumnas.size() && numColumna >= 1);
     }
 
-
-
-
-
-
-
-    public ArrayList<Carta> obtenerCartasExpuestas(int numColumna, int cantCartas) {
-        if (columnaInvalida(numColumna) || cantCartas <= 0) {
-            return new ArrayList<>();
-        }
-        int posColumna = numColumna - 1;
-        var columnaSeleccionada = tableuColumnas.get(posColumna);
-        return columnaSeleccionada.obtenerCartas(cantCartas);
-    }
-
-
     @Override
     public boolean agregarCartas(int posDestino ,ArrayList<Carta> cartas) {
         if (columnaInvalida(posDestino)) {

@@ -6,7 +6,6 @@ import java.util.Collections;
 import java.util.Random;
 
 public abstract class Solitario implements Serializable{
-
     protected Foundation foundation;
     protected Pile stock;
 
@@ -18,7 +17,6 @@ public abstract class Solitario implements Serializable{
     public Solitario(Pile stock, Foundation foundation) {
         this.stock = stock;
         this.foundation = foundation;
-
     }
 
     public abstract boolean pedirCarta();
@@ -26,7 +24,6 @@ public abstract class Solitario implements Serializable{
     public boolean juegoGanado() {
         return this.foundation.estaCompleta();
     }
-
 
     public boolean moverCarta(AreaJugable origen, AreaJugable destino, int posOrigen, int posDestino, int cantCartas) {
         ArrayList<Carta> cartas = origen.getCartas(posOrigen, cantCartas);
@@ -73,6 +70,4 @@ public abstract class Solitario implements Serializable{
     }
 
     public abstract Tableu getTableu();
-
-
 }
