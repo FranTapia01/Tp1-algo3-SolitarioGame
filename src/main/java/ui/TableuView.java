@@ -7,9 +7,9 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 
 public class TableuView<T extends Columna> {
-    private Tableu<T> tableu;
-    private Pane ventana;
-    private Image cartaRevez;
+    private final Tableu<T> tableu;
+    private final Pane ventana;
+    private final Image cartaRevez;
     
     public TableuView(Tableu<T> tableu, Pane ventana) {
         this.tableu = tableu;
@@ -25,7 +25,7 @@ public class TableuView<T extends Columna> {
     }
 
     private void dibujarCartasOcultas() {
-        int margenVisible = 25;
+        int margenVisible = 20;
         for (int i = 1; i <= tableu.getTableuColumnas().size(); i++) {
             int yAgregado = 0;
             for (int j = 1; j <= tableu.getTableuColumnas().get(i-1).getCantidadCartasNoVisibles(); j++) {
@@ -38,21 +38,20 @@ public class TableuView<T extends Columna> {
     }
     private void dibujarCartasVisibles() {
         int margenVisible = 25;
+        int margenVisibleCartasOcultas = 20;
         for (int i = 1; i <= tableu.getTableuColumnas().size(); i++) {
             int yAgregado = 0;
             var columna = tableu.getTableuColumnas().get(i-1);
             for (int j = 0; j < columna.getCantidadCartasNoVisibles(); j++) {
-                yAgregado+=margenVisible;
+                yAgregado+=margenVisibleCartasOcultas;
             }
-                for (Carta carta : columna.getCartasVisibles()) {
-
-
-                    var imagen = new Image(String.valueOf(getClass().getResource("/img/"+carta.getId()+".gif")));
-                    var imagenCarta = new ImageView(imagen);
-                    imagenCarta.setTranslateY(yAgregado);
-                    ((Pane)ventana.lookup("#cajaTableu"+i)).getChildren().add(imagenCarta);
-                    yAgregado += margenVisible;
-                }
+            for (Carta carta : columna.getCartasVisibles()) {
+                var imagen = new Image(String.valueOf(getClass().getResource("/img/"+carta.getId()+".gif")));
+                var imagenCarta = new ImageView(imagen);
+                imagenCarta.setTranslateY(yAgregado);
+                ((Pane)ventana.lookup("#cajaTableu"+i)).getChildren().add(imagenCarta);
+                yAgregado += margenVisible;
+            }
         }
     }
 

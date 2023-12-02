@@ -39,10 +39,10 @@ public class Main extends Application {
         if (!cargarJuego()) {
             mostrarMenu();
         }
-        cuadroSeleccion = new Rectangle(65, 95);
+
+        cuadroSeleccion = new Rectangle(64, 95);
         cuadroSeleccion.setStroke(Color.BLACK);
         cuadroSeleccion.setOpacity(0.3);
-
         stage.show();
     }
 
@@ -127,7 +127,7 @@ public class Main extends Application {
             }
         });
 
-        Scene juegoScene = new Scene(ventana, 800, 800);
+        Scene juegoScene = new Scene(ventana, 800, 700);
         stage.setScene(juegoScene);
     }
 
@@ -160,8 +160,9 @@ public class Main extends Application {
 
     private int cantCartasSeleccionadas(Columna columna, double y) {
         int margenVisible = 25;
+        int margenVisibleCartasOcultas = 20;
         int altoCarta = 95;
-        int yBase = columna.getCantidadCartasNoVisibles()*margenVisible;
+        int yBase = columna.getCantidadCartasNoVisibles()*margenVisibleCartasOcultas;
         int cantCartas = columna.getCartasVisibles().size();
         for (int i = 0; i < cantCartas; i++) {
             int yTope = yBase+margenVisible;
@@ -215,10 +216,11 @@ public class Main extends Application {
     public void redimensionarMarca(AreaJugable area, int pos, int cantCartas) {
         if (cantCartas == 0) return;
         int margenVisible = 25;
+        int margenVisibleCartasOcultas = 20;
         int altoCarta = 95;
         if (area == solitario.getTableu()) {
             Columna columna = (Columna) solitario.getTableu().getTableuColumnas().get(pos-1);
-            int yBase = columna.getCantidadCartasNoVisibles()*margenVisible;
+            int yBase = columna.getCantidadCartasNoVisibles()*margenVisibleCartasOcultas;
             int yAgregado = (columna.getCartasVisibles().size() - cantCartas)*margenVisible;
             cuadroSeleccion.setHeight((cantCartas*margenVisible)+70);
             cuadroSeleccion.setTranslateY(yBase+yAgregado);

@@ -3,39 +3,16 @@
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
-<?import javafx.scene.paint.Color?>
-<?import javafx.scene.paint.RadialGradient?>
-<?import javafx.scene.paint.Stop?>
-<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="800.0" minHeight="5.0" minWidth="5.0" prefHeight="700.0" prefWidth="911.0" snapToPixel="false" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="700.0" prefWidth="800.0" snapToPixel="false" style="-fx-background-color: radial-gradient(focus-angle 0.0deg, focus-distance 0.0% , center 54.4199% 56.6351%, radius 50.0%, #27a82d 0.0%, #2b8631 100.0%);" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" height="700.0" stroke="BLACK" strokeType="INSIDE" width="800.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-         <fill>
-            <RadialGradient centerX="0.5441988950276243" centerY="0.566350710900474" radius="0.5">
-               <stops>
-                  <Stop>
-                     <color>
-                        <Color red="0.1522904485464096" green="0.6578947305679321" blue="0.1775706559419632" />
-                     </color>
-                  </Stop>
-                  <Stop offset="1.0">
-                     <color>
-                        <Color red="0.16862745583057404" green="0.5254902243614197" blue="0.1921568661928177" />
-                     </color>
-                  </Stop>
-               </stops>
-            </RadialGradient>
-         </fill>
-      </Rectangle>
-      <Pane fx:id="opcionKlondike" layoutX="40.0" layoutY="200.0" prefHeight="300.0" prefWidth="300.0">
+      <Pane fx:id="opcionKlondike" layoutX="40.0" layoutY="200.0" prefHeight="300.0" prefWidth="300.0" style="-fx-background-color: #56b55a;">
          <cursor>
             <Cursor fx:constant="OPEN_HAND" />
          </cursor>
          <children>
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#56b55a" height="300.0" stroke="TRANSPARENT" strokeType="INSIDE" width="300.0" />
             <Text fill="WHITE" layoutX="50.0" layoutY="150.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Solitario Klondike" textAlignment="CENTER" textOrigin="CENTER" wrappingWidth="193.689453125">
                <font>
                   <Font size="50.0" />
@@ -43,12 +20,11 @@
             </Text>
          </children>
       </Pane>
-      <Pane fx:id="opcionSpider" layoutX="460.0" layoutY="200.0" prefHeight="300.0" prefWidth="300.0">
+      <Pane fx:id="opcionSpider" layoutX="464.0" layoutY="200.0" prefHeight="300.0" prefWidth="300.0" style="-fx-background-color: #56b55a;">
          <cursor>
             <Cursor fx:constant="OPEN_HAND" />
          </cursor>
          <children>
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#56b55a" height="300.0" stroke="TRANSPARENT" strokeType="INSIDE" width="300.0" />
             <Text fill="WHITE" layoutX="50.0" layoutY="150.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Solitario Spider" textAlignment="CENTER" textOrigin="CENTER" wrappingWidth="193.689453125">
                <font>
                   <Font size="50.0" />
