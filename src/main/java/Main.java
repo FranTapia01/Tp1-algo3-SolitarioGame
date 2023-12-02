@@ -14,6 +14,7 @@ import javafx.stage.Stage;
 import ui.SolitarioSpiderView;
 import ui.SolitarioView;
 import java.io.*;
+import java.util.Random;
 
 public class Main extends Application {
     @FXML
@@ -34,6 +35,7 @@ public class Main extends Application {
     @Override
     public void start(Stage stage) throws Exception{
         this.stage = stage;
+        this.stage.setResizable(true);
         stage.setTitle("Solitario");
         if (!cargarJuego()) {
             mostrarMenu();
@@ -49,16 +51,21 @@ public class Main extends Application {
         var loader = new FXMLLoader(getClass().getResource("menuInicio.fxml"));
         loader.setController(this);
         AnchorPane ventana = loader.load();
+        areaOrigen = null;
+        wasteSeleccionado = false;
+        seleccionActual = null;
+        var random = new Random();
+        var semillaRandom = random.nextInt();
 
         opcionKlondike.setOnMouseClicked(e -> {
-            solitario = new SolitarioKlondike(2);
+            solitario = new SolitarioKlondike(semillaRandom);
             solitarioView = new SolitarioKlondikeView((SolitarioKlondike) solitario);
             solitarioView.dibujarSolitario();
             mostrarJuego(solitarioView.getVentana());
         });
 
         opcionSpider.setOnMouseClicked(e -> {
-            solitario = new SolitarioSpider(2);
+            solitario = new SolitarioSpider(semillaRandom);
             solitarioView = new SolitarioSpiderView((SolitarioSpider) solitario);
             solitarioView.dibujarSolitario();
             mostrarJuego(solitarioView.getVentana());
@@ -82,7 +89,6 @@ public class Main extends Application {
                 int pos = i;
                 (ventana.lookup("#cajaFoundation"+i)).setOnMouseClicked(ActionEvent ->
                         manejarEvento(solitario.getFoundation(), pos, solitario, 1,(Pane)ventana.lookup("#cajaFoundation"+pos)));
-
             }
         }
 

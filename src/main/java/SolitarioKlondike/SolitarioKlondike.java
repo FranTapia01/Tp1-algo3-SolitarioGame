@@ -31,6 +31,7 @@ public class SolitarioKlondike extends Solitario implements Serializable {
             while (!waste.isEmpty()){
                 this.stock.push(this.waste.pop());
             }
+            return true;
         }
         this.waste.push(this.stock.pop());
         return true;
