@@ -35,7 +35,6 @@ public class Main extends Application {
     @Override
     public void start(Stage stage) throws Exception{
         this.stage = stage;
-        this.stage.setResizable(true);
         stage.setTitle("Solitario");
         if (!cargarJuego()) {
             mostrarMenu();
