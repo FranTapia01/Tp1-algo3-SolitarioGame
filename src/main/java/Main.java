@@ -13,6 +13,8 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import ui.SolitarioSpiderView;
 import ui.SolitarioView;
+
+import javax.swing.filechooser.FileSystemView;
 import java.io.*;
 import java.util.Random;
 
@@ -31,9 +33,24 @@ public class Main extends Application {
     private Stage stage;
     private Pane seleccionActual = null;
     private Rectangle cuadroSeleccion;
+    private String rutaCompletaArchivo;
+
+    public static void main(String[] args) {
+        launch(args);
+    }
 
     @Override
     public void start(Stage stage) throws Exception{
+        String directorioDocumentos = FileSystemView.getFileSystemView().getDefaultDirectory().getPath();
+        String nombreCarpetaJuego = "SolitarioGame";
+        String rutaCarpetaJuego = directorioDocumentos + File.separator + nombreCarpetaJuego;
+        File carpetaJuego = new File(rutaCarpetaJuego);
+        if (!carpetaJuego.exists()) {
+            carpetaJuego.mkdir();
+        }
+        String nombreArchivo = "datos.dat";
+        rutaCompletaArchivo = rutaCarpetaJuego + File.separator + nombreArchivo;
+
         this.stage = stage;
         stage.setTitle("Solitario");
         if (!cargarJuego()) {
@@ -121,7 +138,7 @@ public class Main extends Application {
 
         stage.setOnCloseRequest(event -> {
             try {
-                solitario.serializar(new FileOutputStream("doc/archivo.dat"));
+                solitario.serializar(new FileOutputStream(rutaCompletaArchivo));
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
@@ -178,7 +195,7 @@ public class Main extends Application {
     }
 
     public boolean cargarJuego() throws IOException, ClassNotFoundException {
-        File file = new File("doc/archivo.dat");
+        File file = new File(rutaCompletaArchivo);
         if (!file.exists()) {
             return false;
         }
